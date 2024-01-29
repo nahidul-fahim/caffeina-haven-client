@@ -1,5 +1,6 @@
 import About from "./About";
 import Slider from "./Slider";
+import WhyUs from "./WhyUs";
 
 
 const Home = () => {
@@ -7,6 +8,7 @@ const Home = () => {
         <div>
             <Slider />
             <About />
+            <WhyUs />
         </div>
     );
 };
