@@ -27,6 +27,15 @@ body {
   margin: 0 auto 10px;
 }
 
+.section-top-text::before {
+  content: '';
+  display: flex;
+  width: 30px;
+  height: 3px;
+  border-radius: 30px;
+  background-color: #ff7b14;
+}
+
 
 .each-slide-effect>div {
   display: flex;

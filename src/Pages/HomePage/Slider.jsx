@@ -22,7 +22,7 @@ const Slider = () => {
 
 
     return (
-        <Zoom {...properties} scale={0.7}>
+        <Zoom {...properties} scale={0.6} pauseOnHover={false}>
 
             {/* slider 1 */}
             <div className="each-slide-effect relative">
