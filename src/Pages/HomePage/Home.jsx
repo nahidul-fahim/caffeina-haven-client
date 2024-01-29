@@ -1,6 +1,7 @@
 import About from "./About";
 import Slider from "./Slider";
 import WhyUs from "./WhyUs";
+import WorkingHours from "./WorkingHours";
 
 
 const Home = () => {
@@ -9,6 +10,7 @@ const Home = () => {
             <Slider />
             <About />
             <WhyUs />
+            <WorkingHours />
         </div>
     );
 };

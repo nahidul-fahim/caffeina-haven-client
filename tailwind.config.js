@@ -12,9 +12,10 @@ export default {
       white: '#fff',
       black: '#000',
       main: '#0A1316',
-      second: '#ff7b14',
+      second: '#d47124',
       third: '#121a1d',
       lightWhite: '#959590',
+      lightBlack: '#4f4f4f',
     },
     extend: {
       fontFamily: {
