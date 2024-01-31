@@ -74,17 +74,15 @@ const SignIn = () => {
                     // post the new user data to database
                     axiosPublic.post("/createNewUser", newUserInfo)
                         .then(() => {
-                            //
+                            successToast("Successful!")
+                            // Redirect to path after login
+                            navigate(location?.state ? location.state : "/")
                         })
                         // database post error
                         .catch(err => {
                             const error = err.code;
                             failedToast(error)
                         })
-
-                    successToast("Successful!")
-                    // Redirect to path after login
-                    navigate(location?.state ? location.state : "/")
                 }
 
             })
@@ -132,7 +130,7 @@ const SignIn = () => {
 
                 {/* google button */}
                 <button onClick={handleGoogleSignIn}
-                className="font-heading font-medium px-5 py-2 border-[1px] hover:bg-white hover:text-black duration-500 flex justify-center items-center gap-3 uppercase mt-2">
+                    className="font-heading font-medium px-5 py-2 border-[1px] hover:bg-white hover:text-black duration-500 flex justify-center items-center gap-3 uppercase mt-2">
                     <FaGoogle /> Sign In Using Google
                 </button>
 
