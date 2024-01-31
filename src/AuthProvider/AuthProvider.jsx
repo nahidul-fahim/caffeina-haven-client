@@ -41,7 +41,7 @@ const AuthProvider = ({ children }) => {
 
 
     // email-password sign in function
-    const accessExistingUser = (email, password) => {
+    const signInUser = (email, password) => {
         setAuthLoading(true);
         return signInWithEmailAndPassword(auth, email, password)
     }
@@ -92,7 +92,7 @@ const AuthProvider = ({ children }) => {
 
 
     // send the info to context
-    const authInfo = { createNewUser, updateUserProfile, signOutUser, createNewUserByGoogle, accessExistingUser, currentUser, authLoading };
+    const authInfo = { createNewUser, updateUserProfile, signOutUser, createNewUserByGoogle, signInUser, currentUser, authLoading };
 
 
     return (
