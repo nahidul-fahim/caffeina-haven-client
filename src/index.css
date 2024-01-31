@@ -1,10 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Italiana&family=Lato:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap');
 
 @import "keep-react/css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+
+:root {
+  font-size: 18px;
+}
 
 * {
   margin: 0;
@@ -23,7 +27,7 @@ body {
   width: 15%;
   height: 5px;
   border-radius: 30px;
-  background-color: #d47124;
+  background-color: #c8935f;
   margin: 0 auto 10px;
 }
 
@@ -33,7 +37,7 @@ body {
   width: 30px;
   height: 3px;
   border-radius: 30px;
-  background-color: #d47124;
+  background-color: #c8935f;
 }
 
 

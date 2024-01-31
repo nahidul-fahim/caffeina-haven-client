@@ -12,15 +12,15 @@ export default {
       white: '#fff',
       black: '#000',
       main: '#0A1316',
-      second: '#d47124',
+      second: '#c8935f',
       third: '#121a1d',
       lightWhite: '#959590',
-      lightBlack: '#4f4f4f',
+      lightBlack: '#424242',
     },
     extend: {
       fontFamily: {
-        heading: "'Italiana', sans-serif",
-        body: "'Lato', sans-serif"
+        heading: "'Cormorant Garamond', serif",
+        body: "'Jost', sans-serif"
       }
     },
   },
