@@ -3,6 +3,7 @@ import ButtonSecond from "../ButtonSecond/ButtonSecond";
 import { FaBarsStaggered } from "react-icons/fa6";
 import useAuthContext from "../../Hooks/useAuthContext/useAuthContext";
 import { Spinner } from "keep-react";
+import useCurrentUser from "../../Hooks/useCurrentUser/useCurrentUser";
 
 
 
@@ -13,12 +14,14 @@ const Header = () => {
 
     // hooks and custom hooks
     const { currentUser, authLoading, signOutUser } = useAuthContext();
+    const { userPending, user } = useCurrentUser();
 
 
     // navigation menu
     const navMenu =
         <>
             <NavLink>Home</NavLink>
+            <NavLink>Our Menu</NavLink>
             <NavLink>About</NavLink>
             <NavLink>Contact</NavLink>
             <NavLink>Story Hub</NavLink>
@@ -36,7 +39,23 @@ const Header = () => {
     return (
         <nav className="container mx-auto absolute z-[99] flex flex-col justify-between items-center px-5 gap-0 overflow-x-hidden">
             {/* upper side heading */}
-            <div className="w-full py-2 flex justify-end items-center border-b-[1px] border-[#ffffff21]">
+            <div className="w-full py-2 flex justify-end items-center border-b-[1px] border-[#ffffff21] gap-3">
+                {/* show dashboard button if user is admin */}
+                {
+                    userPending ?
+                        <p className="text-lightWhite font-body">Loading...</p>
+                        :
+                        <>
+                            {
+                                user?.userType === "admin" ?
+                                    <Link to={"/dashboard"}><button className="uppercase text-white px-3 py-1 text-[14px] font-body hover:text-second duration-500 font-medium">Dashboard</button></Link>
+                                    :
+                                    ""
+                            }
+                        </>
+                }
+
+                {/* sign in button or user details */}
                 {
                     authLoading ? <Spinner className="text-second" size="sm" />
                         :
@@ -54,8 +73,6 @@ const Header = () => {
                             }
                         </div>
                 }
-
-
             </div>
 
 
@@ -65,7 +82,7 @@ const Header = () => {
 
                 {/* logo */}
                 <div className="w-2/5 lg:w-1/5 flex justify-start items-center">
-                    <img src={logo} alt="website logo" className="w-[80%] md:w-[50%] lg:w-[65%]" />
+                    <Link to={"/"}><img src={logo} alt="website logo" className="w-[80%] md:w-[50%] lg:w-[65%] cursor-pointer hover:scale-110 duration-500" /></Link>
                 </div>
 
                 {/* nav menu */}
@@ -73,7 +90,7 @@ const Header = () => {
                     {navMenu}
                 </div>
 
-                {/* button */}
+                {/* reservation button or  */}
                 <div className="hidden w-1/5 lg:flex justify-end items-center">
                     <ButtonSecond buttonText={"Find A Table"} />
                 </div>

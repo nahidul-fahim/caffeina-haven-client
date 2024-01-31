@@ -80,3 +80,10 @@ body {
   border-radius: 100%;
   color: white;
 }
+
+
+select option {
+  margin: 40px;
+  background: rgb(0, 0, 0);
+  color: #fff;
+}

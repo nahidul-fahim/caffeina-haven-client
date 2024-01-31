@@ -4,6 +4,8 @@ import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 import Home from "../../Pages/HomePage/Home";
 import Register from "../../Pages/Register/Register";
 import SignIn from "../../Pages/SignIn/SignIn";
+import AddNewItem from "../../Pages/AdminDashboardPages/AddNewItem/AddNewItem";
+import Dashboard from "../../Layout/Dashboard/Dashboard";
 
 
 const router = createBrowserRouter([
@@ -28,6 +30,17 @@ const router = createBrowserRouter([
         element: <SignIn />
     },
 
+    // admin dashboard pages
+    {
+        path: "dashboard",
+        element: <Dashboard />,
+        children: [
+            {
+                path: "addNewItem",
+                element: <AddNewItem />,
+            },
+        ],
+    },
 ]);
 
 export default router;

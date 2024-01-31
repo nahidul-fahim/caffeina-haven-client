@@ -52,7 +52,7 @@ const SignIn = () => {
     }
 
 
-    //log in using Google 
+    //sign in using Google 
     const handleGoogleSignIn = () => {
         createNewUserByGoogle()
             .then(result => {

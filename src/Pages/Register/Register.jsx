@@ -114,7 +114,7 @@ const Register = () => {
                                                 updateUserProfile(currentUsersInfo, userName, photo)
                                                 registerForm.current.reset();
                                                 setSelectedImageName('');
-                                                // navigate(location?.state ? location.state : "/")
+                                                navigate(location?.state ? location.state : "/")
                                             }
                                         })
                                         // database post error
