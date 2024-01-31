@@ -12,7 +12,7 @@ export default {
       white: '#fff',
       black: '#000',
       main: '#0A1316',
-      second: '#c8935f',
+      second: '#DD5903',
       third: '#121a1d',
       lightWhite: '#959590',
       lightBlack: '#424242',

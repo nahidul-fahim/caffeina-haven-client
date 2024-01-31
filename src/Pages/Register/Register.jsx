@@ -1,13 +1,23 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import CenteredSectionTitle from "../../Components/CenteredSectionTitle/CenteredSectionTitle";
 import { FaUpload } from "react-icons/fa";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 import { MdHome } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import useAuthContext from "../../Hooks/useAuthContext/useAuthContext";
+import useAxiosPublic from "../../Hooks/useAxiosPublic/useAxiosPublic";
+import useSuccessToast from "../../Hooks/useSuccessToast/useSuccessToast";
+import useFailedToast from "../../Hooks/useFailedToast/useFailedToast";
 
 
-
+// background image
 const img1 = "https://i.ibb.co/FWDxTW1/restaurant.jpg";
+
+// imgBB hosting
+const imgHostingKey = import.meta.env.VITE_IMAGE_HOSTING_KEY
+const imgUploadUrl = `https://api.imgbb.com/1/upload?key=${imgHostingKey}`
+
+
 
 const Register = () => {
 
@@ -15,6 +25,14 @@ const Register = () => {
     const [selectedImageName, setSelectedImageName] = useState('');
     const [selectedImage, setSelectedImage] = useState(null);
     const [showPassword, setShowPassword] = useState(false);
+    const [passwordErrorMessage, setPasswordErrorMessage] = useState(null);
+    const { createNewUser, updateUserProfile } = useAuthContext();
+    const axiosPublic = useAxiosPublic();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const registerForm = useRef(null);
+    const successToast = useSuccessToast();
+    const failedToast = useFailedToast();
 
 
     // handle show password
@@ -42,10 +60,80 @@ const Register = () => {
     // get today's date
     const todayDate = new Date().toDateString().slice(4);
 
-    console.log(todayDate);
 
 
+    // sign up functionality
+    const handleRegister = e => {
+        e.preventDefault();
 
+        // if selected image file is available, upload the image to imgBB
+        if (selectedImage) {
+            axiosPublic.post(imgUploadUrl, selectedImage, {
+                headers: {
+                    'content-type': 'multipart/form-data'
+                }
+            })
+                .then(res => {
+                    // if image file is uploaded proceed to the further procedures
+                    if (res.data) {
+
+                        // get the data from form
+                        const userName = e.target.userName.value;
+                        const userEmail = e.target.userEmail.value;
+                        const password = e.target.password.value;
+                        const photo = res.data.data.display_url;
+                        const userCreationDate = todayDate;
+                        const userType = "user";
+
+                        // insert the form data into an object
+                        const newUserInfo = { userName, userEmail, photo, userCreationDate, userType }
+
+
+                        // regular expression for password
+                        const regExPattern = /^(?=.*[A-Z])(?=.*[\W_]).{6,}$/;
+                        setPasswordErrorMessage();
+
+                        // password validation
+                        if (!regExPattern.test(password)) {
+                            setPasswordErrorMessage("Password should be minimum 6 characters, contain at least 1 capital letter & 1 special character");
+                            return;
+                        }
+
+                        // create new user function
+                        createNewUser(userEmail, password)
+                            .then(result => {
+                                // if new user is created send the data to database
+                                if (result.user) {
+                                    const currentUsersInfo = result.user;
+                                    // post the new user data to database
+                                    axiosPublic.post("/createNewUser", newUserInfo)
+                                        .then(res => {
+                                            const data = res.data;
+                                            if (data.insertedId) {
+                                                successToast('Account creation successful!')
+                                                updateUserProfile(currentUsersInfo, userName, photo)
+                                                registerForm.current.reset();
+                                                setSelectedImageName('');
+                                                // navigate(location?.state ? location.state : "/")
+                                            }
+                                        })
+                                        // database post error
+                                        .catch(err => {
+                                            const error = err.code;
+                                            failedToast(error)
+                                        })
+                                }
+                            })
+                            // firebase account creation error
+                            .catch(error => {
+                                failedToast(error)
+                            });
+                    }
+                })
+                // imgBb file upload error
+                .catch(err => failedToast(err.code));
+        }
+    };
 
 
 
@@ -61,7 +149,9 @@ const Register = () => {
                 <CenteredSectionTitle smallText={"Free Registration"} bigText={"Join Caffeina Now"} />
 
                 {/* registration form */}
-                <form className="mt-5 md:mt-8 w-full md:w-2/4 lg:w-1/3 flex flex-col justify-center items-center gap-5 font-body">
+                <form onSubmit={handleRegister} ref={registerForm}
+                    className="mt-5 md:mt-8 w-full md:w-2/4 lg:w-1/3 flex flex-col justify-center items-center gap-5 font-body">
+
                     {/* name input */}
                     <input required type="text" name="userName" id="userName" placeholder="Your Name" className="w-full bg-[#00000000] border-b-[1px] px-5 py-3 border-lightBlack focus:outline-none focus:border-white text-lightWhite" />
 
@@ -74,9 +164,9 @@ const Register = () => {
                             <input required type={showPassword ? "text" : "password"} name="password" placeholder="Password" id="password" className="w-full bg-[#00000000] border-b-[1px] px-5 py-3 border-lightBlack focus:outline-none focus:border-white text-white" />
                             <span onClick={handleShowPassword} className="absolute right-2 text-lightWhite"> {showPassword ? <BsFillEyeSlashFill /> : <BsFillEyeFill />} </span>
                         </div>
-                        {/* {
+                        {
                             passwordErrorMessage ? <p className="text-[14px] font-regular text-[#c73c3c]">{passwordErrorMessage}</p> : ''
-                        } */}
+                        }
                     </div>
 
                     {/* image file input */}
