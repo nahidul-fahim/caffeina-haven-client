@@ -19,6 +19,10 @@ const router = createBrowserRouter([
                 path: "/",
                 element: <Home />,
             },
+            {
+                path: "/allMenus",
+                element: <OurMenus />
+            },
         ],
     },
     // register and sign in page
@@ -29,10 +33,6 @@ const router = createBrowserRouter([
     {
         path: "/signIn",
         element: <SignIn />
-    },
-    {
-        path: "/allMenus",
-        element: <OurMenus />
     },
 
     // admin dashboard pages

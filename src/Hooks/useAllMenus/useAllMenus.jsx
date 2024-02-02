@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../useAxiosPublic/useAxiosPublic";
 
 
-const useAllMenus = () => {
+const useAllMenus = (selectedCategory) => {
 
     // hooks and custom hooks
     const axiosPublic = useAxiosPublic();
@@ -10,9 +10,9 @@ const useAllMenus = () => {
 
     // fetch the data
     const { isPending: allMenusPending, data: allMenus, refetch: allMenusRefetch } = useQuery({
-        queryKey: ["all-menus"],
+        queryKey: ["all-menus", selectedCategory],
         queryFn: async () => {
-            const res = await axiosPublic.get("/allMenu")
+            const res = await axiosPublic.get(`/allMenu?category=${selectedCategory}`)
             return res.data;
         }
     })
