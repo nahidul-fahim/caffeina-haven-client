@@ -44,7 +44,7 @@ const OurMenus = () => {
             <div className="container mx-auto p-5 flex flex-col justify-center items-center gap-10">
 
                 {/* food category tab selection */}
-                <div className="w-full flex justify-center items-center gap-8 flex-wrap">
+                <div className="w-full flex justify-center items-center gap-x-5 gap-y-2 md:gap-8 flex-wrap">
                     {
                         foodCategories.map((category, index) =>
                             <button key={index} onClick={() => setSelectedCategory(category.toLowerCase())}
@@ -59,7 +59,7 @@ const OurMenus = () => {
                     allMenus.length === 0 ?
                         <p className="text-2xl text-lightWhite text-center font-body mt-10">Oops! No item available!</p>
                         :
-                        <div className="w-full mt-5 grid grid-cols-2 gap-10 justify-center items-center">
+                        <div className="w-full mt-5 grid grid-cols-1 lg:grid-cols-2 gap-10 justify-center items-center">
                             {
                                 allMenus.map((singleMenu, index) =>
                                     <SingleMenuList key={index} singleMenu={singleMenu}></SingleMenuList>

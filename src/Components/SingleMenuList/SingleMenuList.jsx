@@ -17,13 +17,13 @@ const SingleMenuList = ({ singleMenu }) => {
 
             <div className="flex flex-col justify-center items-start gap-1 w-full">
 
-                <div className="flex justify-start items-center gap-7 w-full">
-                    <h3 className="font-heading text-2xl text-white">{itemName}</h3>
+                <div className="flex justify-start items-center gap-2 md:gap-7 w-full">
+                    <h3 className="font-heading text-xl md:text-2xl text-white max-w-fit">{itemName}</h3>
                     {
-                        todayDate === addedOn ? <p className="text-[14px] text-second ml-[-20px] font-body font-medium">NEW</p> : ""
+                        todayDate === addedOn ? <p className="text-[12px] md:text-[14px] text-second ml-[-5px] md:ml-[-20px] font-body font-medium">NEW</p> : ""
                     }
                     <div className="h-[7px] border-y-[1px] border-[#333333] flex-1"></div>
-                    <p className="font-body text-xl text-white">${itemPrice}</p>
+                    <p className="font-body text-[18px] md:text-xl text-white">${itemPrice}</p>
                 </div>
                 <p className="text-left font-body text-[16px] text-lightWhite">{itemDescription}</p>
 
