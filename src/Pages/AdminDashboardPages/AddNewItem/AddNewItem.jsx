@@ -20,7 +20,7 @@ const AddNewItem = () => {
 
     // hooks and custom hooks
     const axiosSecure = useAxiosSecure();
-    const { userPending, user } = useCurrentUser();
+    const { user } = useCurrentUser();
     const [selectedImageName, setSelectedImageName] = useState('');
     const [selectedImage, setSelectedImage] = useState(null);
     const axiosPublic = useAxiosPublic();

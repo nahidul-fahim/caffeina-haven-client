@@ -21,7 +21,7 @@ const Header = () => {
     const navMenu =
         <>
             <NavLink>Home</NavLink>
-            <NavLink>Our Menu</NavLink>
+            <NavLink to={"/allMenus"}>Our Menu</NavLink>
             <NavLink>About</NavLink>
             <NavLink>Contact</NavLink>
             <NavLink>Story Hub</NavLink>
