@@ -3,12 +3,17 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure/useAxiosSecure";
 import LoadingAnimation from "../../../Components/LoadingAnimation/LoadingAnimation";
 import { useMemo } from "react";
 import { flexRender, getCoreRowModel, getPaginationRowModel, useReactTable } from "@tanstack/react-table";
+import useFailedToast from "../../../Hooks/useFailedToast/useFailedToast";
+import useSuccessToast from "../../../Hooks/useSuccessToast/useSuccessToast";
+import Swal from "sweetalert2";
 
 
 const AllUsers = () => {
 
     // hooks and custom hooks
     const axiosSecure = useAxiosSecure();
+    const failedToast = useFailedToast();
+    const successToast = useSuccessToast();
 
 
     // fetch data
@@ -21,6 +26,25 @@ const AllUsers = () => {
     })
 
 
+    // handle blacklist user
+    const handleBlackListUser = id => {
+        const userStatus = "blocked";
+        const updatedUserStatus = { userStatus };
+
+        axiosSecure.put(`/updateUser/${id}`, updatedUserStatus)
+            .then(res => {
+                const data = res.data;
+                if (data.modifiedCount > 0) {
+                    allUsersRefetch();
+                    successToast("Updated status!")
+                }
+            })
+            .catch(err => {
+                failedToast(err.code);
+            })
+    }
+
+
     // columns for tanStack table
     const columns = [
         {
@@ -29,49 +53,59 @@ const AllUsers = () => {
             cell: row => <p>{row.row.index + 1}</p>
         },
         {
-            accessorKey: "carName",
-            header: "Car name"
+            accessorKey: "userName",
+            header: "Name"
         },
         {
-            accessorKey: "price",
-            header: "Price",
+            accessorKey: "_id",
+            header: "ID",
+            cell: row => <p className="text-center text-[16px]">{row.row.original._id}</p>
+        },
+        {
+            accessorKey: "userEmail",
+            header: "Email"
+        },
+        {
+            accessorKey: "photo",
+            header: "Image",
+            cell: row => <div className="flex justify-center items-center">
+                <img src={row.row.original.photo} alt="user image" className="w-[60px] h-[60px] rounded-[50%]" />
+            </div>
+        },
+        {
+            accessorKey: "userCreationDate",
+            header: "Registered on",
             cell: row => <div className="flex w-full justify-center items-center">
-                <p className="font-semibold text-[#0f0f0f] capitalize rounded-md text-center">${row.row.original.price}</p>
+                <p className="capitalize text-center">{row.row.original.userCreationDate}</p>
             </div>
         },
         {
-            accessorKey: "addingDate",
-            header: "Added on"
-        },
-        {
-            accessorKey: "sellerName",
-            header: "Seller Name"
-        },
-        {
-            accessorKey: "sellerEmail",
-            header: "Seller Email"
-        },
-        {
-            accessorKey: "sellerPhoto",
-            header: "Seller",
-            cell: row => <div className="flex max-w-fit justify-center items-center">
-                <img src={row.row.original.sellerPhoto} alt="product image" className="w-[70px] h-[70px] rounded-[50%]" />
-            </div>
-        },
-        {
-            accessorKey: "totalBids",
-            header: "Total bids",
+            accessorKey: "userStatus",
+            header: "Status",
             cell: row => <div className="flex w-full justify-center items-center">
-                <p className="font-semibold text-xl text-[#000000] capitalize rounded-md text-center">{row.row.original.totalBids || "-"}</p>
+                <p className={`${row.row.original.userStatus === "blocked" ? "text-[#ff2a2a]" : "text-[#18e429]"} capitalize text-center`}>{row.row.original.userStatus || "Regular"}</p>
             </div>
         },
         {
-            accessorKey: "sellStatus",
-            header: "Sell status",
-            cell: row => <div className="flex w-full justify-center items-center">
-                <p className="text-[18px] font-semibold text-[#ff4141] capitalize px-2 py-1 rounded-md bg-[#dddddd] text-center">{row.row.original.sellStatus}</p>
-            </div>
-        }
+            accessorKey: "",
+            header: "Action",
+            cell: (row) => <button disabled={row.row.original.userStatus === "blocked"} onClick={() => {
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "red",
+                    cancelButtonColor: "black",
+                    confirmButtonText: "Yes, block the user!",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        handleBlackListUser(row.row.original._id)
+                    }
+                });
+            }}
+                className="bg-[#af0606] disabled:bg-[#694d4d] disabled:cursor-not-allowed px-2 text-[16px] uppercase hover:bg-third duration-500 py-1">Block</button>
+        },
     ]
 
 
@@ -90,8 +124,6 @@ const AllUsers = () => {
 
 
 
-
-
     // conditional loading
     if (allUsersPending) {
         return <LoadingAnimation />
@@ -99,16 +131,16 @@ const AllUsers = () => {
 
 
     return (
-        <div className="lg:min-h-[100vh] p-5 flex flex-col container mx-auto gap-8 justify-start items-center">
-            <h2 className="text-center text-4xl md:text-5xl font-bold text-main capitalize">All products</h2>
+        <div className="container mx-auto mt-5 md:mt-7 lg:mt-10 w-full flex flex-col justify-center items-center gap-7">
+            <h2 className="text-4xl uppercase font-heading text-center">All Users</h2>
 
             {/* table to show all the products */}
             <div className="w-full mt-10">
-                <table>
+                <table className="w-full font-body text-[16px]">
                     <thead>
                         {
                             table.getHeaderGroups().map((headerGroup, index) =>
-                                <tr key={index} className="table-row">
+                                <tr key={index} className="table-row text-second font-semibold">
                                     {headerGroup.headers.map(header =>
                                         <th key={header?.id} className="table-description text-sub">
                                             {

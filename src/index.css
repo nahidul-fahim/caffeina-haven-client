@@ -114,3 +114,11 @@ select option {
   transition: all 0.7s ease-in;
   background-color: #DD5903;
 }
+
+
+/* tanStack table style */
+.table-description {
+  padding: 10px 10px;
+  text-align: center;
+  border: 1px solid rgb(32, 32, 32);
+}

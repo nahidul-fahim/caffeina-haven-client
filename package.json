@@ -24,7 +24,8 @@
     "react-router-dom": "^6.21.3",
     "react-slideshow-image": "^4.3.0",
     "sonner": "^1.4.0",
-    "sort-by": "^1.2.0"
+    "sort-by": "^1.2.0",
+    "sweetalert2": "^11.10.4"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
