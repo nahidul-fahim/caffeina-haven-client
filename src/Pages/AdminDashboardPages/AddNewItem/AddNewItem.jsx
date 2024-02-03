@@ -135,7 +135,7 @@ const AddNewItem = () => {
                 </div>
 
                 {/* item description */}
-                <textarea required name="itemDescription" id="itemDescription" placeholder="Item description" className="w-full bg-[#00000000] border-b-[1px] py-3 border-lightBlack focus:outline-none focus:border-white text-white" />
+                <textarea required name="itemDescription" id="itemDescription" placeholder="Item description" maxLength={55} className="w-full bg-[#00000000] border-b-[1px] py-3 border-lightBlack focus:outline-none focus:border-white text-white" />
 
                 {/* image file input */}
                 <label

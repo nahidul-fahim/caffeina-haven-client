@@ -13,7 +13,7 @@ const Dashboard = () => {
             <NavLink to={"/"}>Home</NavLink>
             <NavLink>Statistics</NavLink>
             <NavLink to={"/dashboard/addNewItem"}>Add Item</NavLink>
-            <NavLink>All Users</NavLink>
+            <NavLink to={"/dashboard/allUsers"}>All Users</NavLink>
         </>
 
 

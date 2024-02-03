@@ -7,6 +7,7 @@ import SignIn from "../../Pages/SignIn/SignIn";
 import AddNewItem from "../../Pages/AdminDashboardPages/AddNewItem/AddNewItem";
 import Dashboard from "../../Layout/Dashboard/Dashboard";
 import OurMenus from "../../Pages/OurMenus/OurMenus";
+import AllUsers from "../../Pages/AdminDashboardPages/AllUsers/AllUsers";
 
 
 const router = createBrowserRouter([
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
             {
                 path: "addNewItem",
                 element: <AddNewItem />,
+            },
+            {
+                path: "allUsers",
+                element: <AllUsers />,
             },
         ],
     },
