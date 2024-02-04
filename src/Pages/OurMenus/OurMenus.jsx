@@ -6,7 +6,7 @@ import useAllMenus from "../../Hooks/useAllMenus/useAllMenus";
 
 const bgImg = "https://i.ibb.co/R7zFLT7/home-bg-8-1.jpg";
 
-// const foodOriginList = ["american", "bangladeshi", "chinese", "french", "indian", "italian", "japanese", "korean", "mexican", "moroccan", "thai", "turkish"];
+const foodOriginList = ["All", "American", "Bangladeshi", "Chinese", "French", "Indian", "Italian", "Japanese", "Korean", "Mexican", "Moroccan", "Thai", "Turkish"];
 
 const foodCategories = ["All", "Bakery", "Beverages", "Desserts", "Salads", "Sandwiches", "Soups"];
 
@@ -15,7 +15,10 @@ const OurMenus = () => {
 
     // hooks and custom hooks
     const [selectedCategory, setSelectedCategory] = useState("all");
-    const { allMenusPending, allMenus } = useAllMenus(selectedCategory);
+    const [selectedOrigin, setSelectedOrigin] = useState("all");
+    const { allMenusPending, allMenus } = useAllMenus(selectedCategory, selectedOrigin);
+
+    console.log(selectedOrigin)
 
 
 
@@ -52,6 +55,21 @@ const OurMenus = () => {
                                 {category}
                             </button>)
                     }
+                </div>
+
+                {/* filter options */}
+                <div className="w-full flex justify-end items-center font-body">
+                    <select name="foodOrigin" id="foodOrigin" defaultValue={selectedOrigin}
+                        onChange={e => {
+                            const selectedFoodOrigin = e.target.value;
+                            setSelectedOrigin(selectedFoodOrigin);
+                        }}
+                        className="bg-[#ffffff00] text-white border-[1px] px-5 py-1 border-[#313131] focus:outline-none focus:border-lightBlack">
+                        {
+                            foodOriginList.map((origin, index) =>
+                                <option key={index} value={origin} className="capitalize">{origin}</option>)
+                        }
+                    </select>
                 </div>
 
                 {/* showing menu list */}

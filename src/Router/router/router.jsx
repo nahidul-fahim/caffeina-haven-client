@@ -8,6 +8,7 @@ import AddNewItem from "../../Pages/AdminDashboardPages/AddNewItem/AddNewItem";
 import Dashboard from "../../Layout/Dashboard/Dashboard";
 import OurMenus from "../../Pages/OurMenus/OurMenus";
 import AllUsers from "../../Pages/AdminDashboardPages/AllUsers/AllUsers";
+import AllItems from "../../Pages/AdminDashboardPages/AllItems/AllItems";
 
 
 const router = createBrowserRouter([
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
             {
                 path: "allUsers",
                 element: <AllUsers />,
+            },
+            {
+                path: "allItems",
+                element: <AllItems />,
             },
         ],
     },
