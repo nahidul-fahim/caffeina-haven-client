@@ -10,6 +10,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import LoadingAnimation from "../../Components/LoadingAnimation/LoadingAnimation";
 import SingleMemory from "./SingleMemory";
+import PinnedMemory from "./PinnedMemory";
 
 
 const bgImg = "https://i.ibb.co/fdNsdhd/coffee-bg-1.jpg";
@@ -141,7 +142,7 @@ const StoryHub = () => {
 
 
     return (
-        <div className="mx-auto">
+        <div className="mx-auto overflow-x-hidden">
             {/* page heading section */}
             <div
                 className="h-[400px] md:h-[450px] lg:h-[500px] flex flex-col justify-center items-center gap-4"
@@ -202,14 +203,22 @@ const StoryHub = () => {
 
 
             {/* page content section */}
-            <div className="container mx-auto p-5 flex flex-col justify-center items-center gap-10 mt-10">
+            <div className="container mx-auto p-5 flex flex-col lg:flex-row justify-center items-start gap-10 mt-10 relative min-h-[100vh]">
 
-                {/* show memories */}
-                <div className="w-[98%] md:w-[90%] lg:w-[70%] min-h-[500px] flex flex-col justify-start items-start gap-14">
+                {/* pinned memories shortcut */}
+                <div className="w-full lg:w-1/5 flex flex-col justify-start items-start gap-4 border-2 p-5">
+                    <h3 className="font-heading text-xl text-white uppercase">Pinned</h3>
                     {
-                        allMemories.map((memory, index) => <SingleMemory key={index} memory={memory}></SingleMemory>)
+                        allMemories.map((memory, index) => <PinnedMemory key={index} memory={memory} memoriesRefetch={memoriesRefetch}></PinnedMemory>)
                     }
 
+                </div>
+
+                {/* show memories */}
+                <div className="w-[98%] lg:w-4/5 flex flex-col justify-start items-start gap-14">
+                    {
+                        allMemories.map((memory, index) => <SingleMemory key={index} memory={memory} memoriesRefetch={memoriesRefetch}></SingleMemory>)
+                    }
                 </div>
 
 
