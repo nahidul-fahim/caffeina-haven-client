@@ -9,6 +9,8 @@ import Dashboard from "../../Layout/Dashboard/Dashboard";
 import OurMenus from "../../Pages/OurMenus/OurMenus";
 import AllUsers from "../../Pages/AdminDashboardPages/AllUsers/AllUsers";
 import AllItems from "../../Pages/AdminDashboardPages/AllItems/AllItems";
+import UpdateItem from "../../Pages/AdminDashboardPages/UpdateItem/UpdateItem";
+import StoryHub from "../../Pages/StoryHub/StoryHub";
 
 
 const router = createBrowserRouter([
@@ -24,6 +26,10 @@ const router = createBrowserRouter([
             {
                 path: "/allMenus",
                 element: <OurMenus />
+            },
+            {
+                path: "/storyHub",
+                element: <StoryHub />
             },
         ],
     },
@@ -53,6 +59,10 @@ const router = createBrowserRouter([
             {
                 path: "allItems",
                 element: <AllItems />,
+            },
+            {
+                path: "updateItem/:id",
+                element: <UpdateItem />,
             },
         ],
     },

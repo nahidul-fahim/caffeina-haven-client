@@ -13,7 +13,7 @@ export default {
       black: '#000',
       main: '#0A1316',
       second: '#DD5903',
-      third: '#121a1d',
+      third: '#0f1c1c',
       lightWhite: '#959590',
       lightBlack: '#424242',
     },

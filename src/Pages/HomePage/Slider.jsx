@@ -27,7 +27,7 @@ const Slider = () => {
             {/* slider 1 */}
             <div className="each-slide-effect relative">
                 <div style={{
-                    backgroundImage: `linear-gradient(to right, #121a1dd9, #00000050) , url(${sliderImg2})`,
+                    backgroundImage: `linear-gradient(to right, #0f1c1cd9, #00000050) , url(${sliderImg2})`,
                 }}>
                     <span className='container flex flex-col justify-center items-center'>
                         <p className="text-white uppercase font-body font-semibold slider-top-text">Welcome to caffeina</p>
@@ -48,7 +48,7 @@ const Slider = () => {
             {/* slider 2 */}
             <div className="each-slide-effect relative">
                 <div style={{
-                    backgroundImage: `linear-gradient(to right, #121a1dd9, #00000050) , url(${sliderImg3})`,
+                    backgroundImage: `linear-gradient(to right, #0f1c1cd9, #00000050) , url(${sliderImg3})`,
                 }}>
                     <span className='container flex flex-col justify-center items-center'>
                         <p className="text-white uppercase font-body font-semibold slider-top-text">Hello! new friend</p>
@@ -69,7 +69,7 @@ const Slider = () => {
             {/* slider 3 */}
             <div className="each-slide-effect relative">
                 <div style={{
-                    backgroundImage: `linear-gradient(to right, #121a1dd9, #00000050) , url(${sliderImg1})`,
+                    backgroundImage: `linear-gradient(to right, #0f1c1cd9, #00000050) , url(${sliderImg1})`,
                 }}>
                     <span className='container flex flex-col justify-center items-center'>
                     <p className="text-white uppercase font-body font-semibold slider-top-text">Make your day</p>

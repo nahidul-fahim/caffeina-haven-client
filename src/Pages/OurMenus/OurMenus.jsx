@@ -33,9 +33,9 @@ const OurMenus = () => {
         <div className="mx-auto">
             {/* page heading section */}
             <div
-                className="h-[500px] flex flex-col justify-center items-center gap-4"
+                className="h-[400px] md:h-[450px] lg:h-[500px] flex flex-col justify-center items-center gap-4"
                 style={{
-                    background: `linear-gradient(to top, #000000a6, #00000059), url(${bgImg})`,
+                    background: `linear-gradient(to top, #000000a6, #000000a6), url(${bgImg})`,
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover'

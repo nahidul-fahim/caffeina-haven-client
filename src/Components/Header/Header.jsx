@@ -20,11 +20,26 @@ const Header = () => {
     // navigation menu
     const navMenu =
         <>
-            <NavLink>Home</NavLink>
-            <NavLink to={"/allMenus"}>Our Menu</NavLink>
-            <NavLink>About</NavLink>
-            <NavLink>Contact</NavLink>
-            <NavLink>Story Hub</NavLink>
+            <NavLink to={"/"}
+                className={({ isActive }) => {
+                    return isActive ? "active-menu-link" : "menu-link"
+                }}>Home</NavLink>
+            <NavLink to={"/allMenus"}
+                className={({ isActive }) => {
+                    return isActive ? "active-menu-link" : "menu-link"
+                }}>Our Menu</NavLink>
+            <NavLink to={"/about"}
+                className={({ isActive }) => {
+                    return isActive ? "active-menu-link" : "menu-link"
+                }}>About</NavLink>
+            <NavLink to={"/contact"}
+                className={({ isActive }) => {
+                    return isActive ? "active-menu-link" : "menu-link"
+                }}>Contact</NavLink>
+            <NavLink to={"/storyHub"}
+                className={({ isActive }) => {
+                    return isActive ? "active-menu-link" : "menu-link"
+                }}>Story Hub</NavLink>
         </>
 
 
@@ -37,7 +52,7 @@ const Header = () => {
 
 
     return (
-        <nav className="container mx-auto absolute z-[99] flex flex-col justify-between items-center px-5 gap-0 overflow-x-hidden">
+        <nav className="container mx-auto absolute top-0 z-[99] flex flex-col justify-between items-center px-5 gap-0 overflow-x-hidden">
             {/* upper side heading */}
             <div className="w-full py-2 flex justify-end items-center border-b-[1px] border-[#ffffff21] gap-3">
                 {/* show dashboard button if user is admin */}
