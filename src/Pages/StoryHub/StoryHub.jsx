@@ -142,7 +142,7 @@ const StoryHub = () => {
 
 
     return (
-        <div className="mx-auto overflow-x-hidden">
+        <div className="mx-auto">
             {/* page heading section */}
             <div
                 className="h-[400px] md:h-[450px] lg:h-[500px] flex flex-col justify-center items-center gap-4"
@@ -159,38 +159,43 @@ const StoryHub = () => {
                             <h1 className="text-xl text-center uppercase md:text-2xl font-heading">Share Your Thoughts</h1>
 
                             {/* message and image post */}
-                            <form onSubmit={handlePostNewMemory} ref={postMemoryForm}
-                                className="w-full flex flex-col justify-center items-center gap-2">
+                            {
+                                user?.userStatus === "blocked" ?
+                                    <p className="mt-4 text-center text-[#e65858] md:text-2xl font-body">You are blocked from posting anything</p>
+                                    :
+                                    <form onSubmit={handlePostNewMemory} ref={postMemoryForm}
+                                        className="w-full flex flex-col justify-center items-center gap-2">
 
-                                {/* message + image */}
-                                <div className="w-full flex justify-center items-center gap-2 md:gap-5">
-                                    {/* message input */}
-                                    <textarea required name="userPost" placeholder="Reveal your thoughts" maxLength={250} id="userPost" className="w-[90%] border-[1px] border-[#ffffff00] bg-[#f0f0f021] focus:outline-none focus:border-lightBlack px-3 py-1 text-[16px] rounded-[5px]" />
-                                    {/* image file input */}
-                                    <label
-                                        htmlFor="image"
-                                        className="cursor-pointer relative focus:outline-none bg-[#f0f0f021] w-[50px] h-[50px] rounded-[5px] p-2 transition-all duration-500 text-white flex justify-center items-center gap-2 text-2xl"
-                                    >
-                                        <FaCamera />
-                                        <input
-                                            type="file"
-                                            name="postImage"
-                                            id="postImage"
-                                            accept="image/*"
-                                            onChange={handleImageInput}
-                                            className="cursor-pointer opacity-0 absolute top-0 right-0 w-[50px] h-[50px]" />
-                                    </label>
-                                </div>
+                                        {/* message + image */}
+                                        <div className="w-full flex justify-center items-center gap-2 md:gap-5">
+                                            {/* message input */}
+                                            <textarea required name="userPost" placeholder="Reveal your thoughts" maxLength={250} id="userPost" className="w-[90%] border-[1px] border-[#ffffff00] bg-[#f0f0f021] focus:outline-none focus:border-lightBlack px-3 py-1 text-[16px] rounded-[5px]" />
+                                            {/* image file input */}
+                                            <label
+                                                htmlFor="image"
+                                                className="cursor-pointer relative focus:outline-none bg-[#f0f0f021] w-[50px] h-[50px] rounded-[5px] p-2 transition-all duration-500 text-white flex justify-center items-center gap-2 text-2xl"
+                                            >
+                                                <FaCamera />
+                                                <input
+                                                    type="file"
+                                                    name="postImage"
+                                                    id="postImage"
+                                                    accept="image/*"
+                                                    onChange={handleImageInput}
+                                                    className="cursor-pointer opacity-0 absolute top-0 right-0 w-[50px] h-[50px]" />
+                                            </label>
+                                        </div>
 
-                                {/* show image and submit button */}
-                                <div className="w-full flex justify-start items-center gap-3">
-                                    {/* show selected image */}
-                                    {
-                                        selectedImage ? <>{renderSelectedImage()}</> : ""
-                                    }
-                                    <input type="submit" value="Share" className="bg-second text-white px-4 py-1 hover:bg-white hover:text-black duration-500 cursor-pointer rounded-[3px]" />
-                                </div>
-                            </form>
+                                        {/* show image and submit button */}
+                                        <div className="w-full flex justify-start items-center gap-3">
+                                            {/* show selected image */}
+                                            {
+                                                selectedImage ? <>{renderSelectedImage()}</> : ""
+                                            }
+                                            <input type="submit" value="Share" className="bg-second text-white px-4 py-1 hover:bg-white hover:text-black duration-500 cursor-pointer rounded-[3px]" />
+                                        </div>
+                                    </form>
+                            }
                         </div>
                         :
                         <div className="flex flex-col gap-4 justify-center items-center p-5 bg-[#0e0e0e77] mt-[100px]">
@@ -203,16 +208,18 @@ const StoryHub = () => {
 
 
             {/* page content section */}
-            <div className="container mx-auto p-5 flex flex-col lg:flex-row justify-center items-start gap-10 mt-10 relative min-h-[100vh]">
+            <div className="container mx-auto p-5 flex flex-col lg:flex-row justify-center items-start gap-10 mt-10 min-h-[100vh] overflow-y-auto">
 
                 {/* pinned memories shortcut */}
-                <div className="w-full lg:w-1/5 flex flex-col justify-start items-start gap-4 border-2 p-5">
+                <div className="w-full lg:w-1/5 flex flex-col justify-start items-start gap-4 py-5 sticky-div">
                     <h3 className="font-heading text-xl text-white uppercase">Pinned</h3>
-                    {
-                        allMemories.map((memory, index) => <PinnedMemory key={index} memory={memory} memoriesRefetch={memoriesRefetch}></PinnedMemory>)
-                    }
-
+                    <div className="w-full grid grid-cols-4 md:grid-cols-6 lg:grid-cols-2">
+                        {
+                            allMemories.map((memory, index) => <PinnedMemory key={index} memory={memory}></PinnedMemory>)
+                        }
+                    </div>
                 </div>
+
 
                 {/* show memories */}
                 <div className="w-[98%] lg:w-4/5 flex flex-col justify-start items-start gap-14">
@@ -220,7 +227,6 @@ const StoryHub = () => {
                         allMemories.map((memory, index) => <SingleMemory key={index} memory={memory} memoriesRefetch={memoriesRefetch}></SingleMemory>)
                     }
                 </div>
-
 
 
             </div>
