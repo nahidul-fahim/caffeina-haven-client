@@ -11,7 +11,7 @@
 }
 
 ::selection {
-  color: #DD5903;
+  color: #b58753;
   background-color: white;
 }
 
@@ -34,7 +34,7 @@ body {
   width: 15%;
   height: 5px;
   border-radius: 30px;
-  background-color: #DD5903;
+  background-color: #b58753;
   margin: 0 auto 10px;
 }
 
@@ -44,7 +44,7 @@ body {
   width: 30px;
   height: 3px;
   border-radius: 30px;
-  background-color: #DD5903;
+  background-color: #b58753;
 }
 
 .each-slide-effect>div {
@@ -96,7 +96,7 @@ select option {
   height: 2px;
   width: 0;
   transition: all 0.7s ease-in;
-  background-color: #DD5903;
+  background-color: #b58753;
 }
 
 .menu-link:hover::after {
@@ -104,7 +104,7 @@ select option {
   display: block;
   height: 2px;
   width: 100%;
-  background-color: #DD5903;
+  background-color: #b58753;
 }
 
 .active-menu-link::after {
@@ -113,7 +113,7 @@ select option {
   height: 2px;
   width: 100%;
   transition: all 0.7s ease-in;
-  background-color: #DD5903;
+  background-color: #b58753;
 }
 
 

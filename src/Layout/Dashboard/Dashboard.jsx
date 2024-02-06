@@ -1,6 +1,7 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 
-
+// website logo
+const logo = "https://i.ibb.co/sR7yV2c/website-Logo.png";
 const bgImg = "https://i.ibb.co/FWDxTW1/restaurant.jpg";
 
 const Dashboard = () => {
@@ -29,6 +30,7 @@ const Dashboard = () => {
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover'
                 }}>
+                <Link to={"/"}><img src={logo} alt="Website logo" className="w-[125px] h-[50px] hover:scale-110 duration-500" /></Link>
                 <h1 className="text-5xl uppercase md:text-7xl font-heading text-center">Dashboard</h1>
                 <div className="flex flex-wrap justify-center items-center gap-5 font-body mt-2">
                     {adminMenu}

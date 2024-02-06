@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import ButtonMain from "../../Components/ButtonMain/ButtonMain";
 import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 
@@ -18,7 +19,7 @@ const About = () => {
                 <div className="w-full md:w-1/2 py-5 md:p-[30px] lg:p-[70px] flex flex-col gap-5 self-stretch justify-center items-start">
                     <SectionTitle smallText={"About us"} bigText={"We invite you to our Caffeina"} />
                     <p className="font-body text-lightWhite">Sip into perfection at our coffee haven, where aromatic blends meet exquisite flavors in a cozy ambiance. Explore the art of brewing and indulge in delightful treats, making every visit a delightful journey for your palate and soul.</p>
-                    <ButtonMain buttonText="Read more" />
+                    <Link to={"/about"}><ButtonMain buttonText="Read more" /></Link>
                 </div>
                 <div className="w-full self-stretch md:w-1/2">
                     <img src={img1} alt="" className="w-full h-[100%] bg-cover" />
@@ -33,7 +34,7 @@ const About = () => {
                 <div className="w-full md:w-1/2 py-5 md:p-[30px] lg:p-[70px] flex flex-col gap-5 self-stretch justify-center items-start order-1 md:order-2">
                     <SectionTitle smallText={"Coffee menu"} bigText={"Quality Kava Beans"} />
                     <p className="font-body text-lightWhite">Sip into perfection at our coffee haven, where aromatic blends meet exquisite flavors in a cozy ambiance. Explore the art of brewing and indulge in delightful treats, making every visit a delightful journey for your palate and soul.</p>
-                    <ButtonMain buttonText="View menu" />
+                   <Link to={"/allMenus"}><ButtonMain buttonText="View menu" /></Link>
                 </div>
             </div>
 

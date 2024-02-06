@@ -13,6 +13,7 @@ import UpdateItem from "../../Pages/AdminDashboardPages/UpdateItem/UpdateItem";
 import StoryHub from "../../Pages/StoryHub/StoryHub";
 import FindATable from "../../Pages/FindATable/FindATable";
 import AllReservation from "../../Pages/AdminDashboardPages/AllReservation/AllReservation";
+import AboutUs from "../../Pages/AboutUs/AboutUs";
 
 
 const router = createBrowserRouter([
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
             {
                 path: "/allMenus",
                 element: <OurMenus />
+            },
+            {
+                path: "/about",
+                element: <AboutUs />
             },
             {
                 path: "/storyHub",
