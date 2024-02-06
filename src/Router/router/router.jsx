@@ -11,6 +11,7 @@ import AllUsers from "../../Pages/AdminDashboardPages/AllUsers/AllUsers";
 import AllItems from "../../Pages/AdminDashboardPages/AllItems/AllItems";
 import UpdateItem from "../../Pages/AdminDashboardPages/UpdateItem/UpdateItem";
 import StoryHub from "../../Pages/StoryHub/StoryHub";
+import FindATable from "../../Pages/FindATable/FindATable";
 
 
 const router = createBrowserRouter([
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
             {
                 path: "/storyHub",
                 element: <StoryHub />
+            },
+            {
+                path: "/findATable",
+                element: <FindATable />
             },
         ],
     },

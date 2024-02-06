@@ -107,7 +107,7 @@ const Header = () => {
 
                 {/* reservation button or  */}
                 <div className="hidden w-1/5 lg:flex justify-end items-center">
-                    <ButtonSecond buttonText={"Find A Table"} />
+                    <Link to={"/findATable"}><ButtonSecond buttonText={"Find A Table"} /></Link>
                 </div>
 
                 {/* smaller device nav menu icon */}

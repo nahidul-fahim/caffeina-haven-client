@@ -33,11 +33,11 @@ const Slider = () => {
                         <p className="text-white uppercase font-body font-semibold slider-top-text">Welcome to caffeina</p>
                         <h2 className='text-[50px] md:text-[70px] lg:text-[110px] z-50 font-normal text-center text-white uppercase font-heading'>Coffee & Chocolate</h2>
                         <div className="w-full flex justify-center items-center gap-2">
-                            <Link to="/">
+                            <Link to="/findATable">
                                 <ButtonSecond buttonText={"Book A Table"} />
                             </Link>
 
-                            <Link to="/">
+                            <Link to="/allMenus">
                                 <button className='text-white font-medium uppercase font-heading px-6 md:px-8 py-3 md:py-4 hover:scale-105 duration-500 group flex justify-center items-center gap-2'>Open Menu</button>
                             </Link>
                         </div>
@@ -54,11 +54,11 @@ const Slider = () => {
                         <p className="text-white uppercase font-body font-semibold slider-top-text">Hello! new friend</p>
                         <h2 className='text-[50px] md:text-[70px] lg:text-[110px] z-50 font-normal text-center text-white uppercase font-heading'>Reserve your table</h2>
                         <div className="w-full flex justify-center items-center gap-2">
-                            <Link to="/">
+                            <Link to="/findATable">
                                 <ButtonSecond buttonText={"Book A Table"} />
                             </Link>
 
-                            <Link to="/">
+                            <Link to="/allMenus">
                                 <button className='text-white font-medium uppercase font-heading px-6 md:px-8 py-3 md:py-4 hover:scale-105 duration-500 group flex justify-center items-center gap-2'>Open Menu</button>
                             </Link>
                         </div>
@@ -75,11 +75,11 @@ const Slider = () => {
                     <p className="text-white uppercase font-body font-semibold slider-top-text">Make your day</p>
                         <h2 className='text-[50px] md:text-[70px] lg:text-[110px] z-50 font-normal text-center text-white uppercase font-heading'>Visit our place</h2>
                         <div className="w-full flex justify-center items-center gap-2">
-                            <Link to="/">
+                            <Link to="/findATable">
                                 <ButtonSecond buttonText={"Book A Table"} />
                             </Link>
 
-                            <Link to="/">
+                            <Link to="/allMenus">
                                 <button className='text-white font-medium uppercase font-heading px-6 md:px-8 py-3 md:py-4 hover:scale-105 duration-500 group flex justify-center items-center gap-2'>Open Menu</button>
                             </Link>
                         </div>
