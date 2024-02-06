@@ -121,7 +121,7 @@ const FindATable = () => {
                     </div>
 
                     {/* item description */}
-                    <textarea name="specialRequest" id="specialRequest" placeholder="Special request" maxLength={55} className="w-full bg-[#00000000] border-b-[1px] py-3 border-lightBlack focus:outline-none focus:border-white text-white" />
+                    <textarea name="specialRequest" id="specialRequest" placeholder="Special request" maxLength={150} className="w-full bg-[#00000000] border-b-[1px] py-3 border-lightBlack focus:outline-none focus:border-white text-white" />
 
 
                     {/* submit button */}

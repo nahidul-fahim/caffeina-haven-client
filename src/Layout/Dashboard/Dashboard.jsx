@@ -15,6 +15,7 @@ const Dashboard = () => {
             <NavLink to={"/dashboard/addNewItem"}>Add Item</NavLink>
             <NavLink to={"/dashboard/allItems"}>All Items</NavLink>
             <NavLink to={"/dashboard/allUsers"}>All Users</NavLink>
+            <NavLink to={"/dashboard/allReservation"}>All Reservation</NavLink>
         </>
 
 
@@ -29,7 +30,7 @@ const Dashboard = () => {
                     backgroundSize: 'cover'
                 }}>
                 <h1 className="text-5xl uppercase md:text-7xl font-heading text-center">Dashboard</h1>
-                <div className="flex justify-center items-center gap-5 font-body mt-2">
+                <div className="flex flex-wrap justify-center items-center gap-5 font-body mt-2">
                     {adminMenu}
                 </div>
             </div>

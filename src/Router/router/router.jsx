@@ -12,6 +12,7 @@ import AllItems from "../../Pages/AdminDashboardPages/AllItems/AllItems";
 import UpdateItem from "../../Pages/AdminDashboardPages/UpdateItem/UpdateItem";
 import StoryHub from "../../Pages/StoryHub/StoryHub";
 import FindATable from "../../Pages/FindATable/FindATable";
+import AllReservation from "../../Pages/AdminDashboardPages/AllReservation/AllReservation";
 
 
 const router = createBrowserRouter([
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
             {
                 path: "updateItem/:id",
                 element: <UpdateItem />,
+            },
+            {
+                path: "allReservation",
+                element: <AllReservation />,
             },
         ],
     },
