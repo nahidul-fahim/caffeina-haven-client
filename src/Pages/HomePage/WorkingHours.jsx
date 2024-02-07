@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import ButtonMain from "../../Components/ButtonMain/ButtonMain";
 import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 
@@ -19,7 +20,7 @@ const WorkingHours = () => {
                 {/* title  */}
                 <div className="flex flex-col justify-center items-start gap-5">
                     <SectionTitle smallText={"Reservation"} bigText={"Working hours"} />
-                    <ButtonMain buttonText={"Book table"} />
+                    <Link to={"/findATable"}><ButtonMain buttonText={"Book table"} /></Link>
                 </div>
 
 

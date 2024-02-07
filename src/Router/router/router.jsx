@@ -14,6 +14,7 @@ import StoryHub from "../../Pages/StoryHub/StoryHub";
 import FindATable from "../../Pages/FindATable/FindATable";
 import AllReservation from "../../Pages/AdminDashboardPages/AllReservation/AllReservation";
 import AboutUs from "../../Pages/AboutUs/AboutUs";
+import Contact from "../../Pages/Contact/Contact";
 
 
 const router = createBrowserRouter([
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
             {
                 path: "/about",
                 element: <AboutUs />
+            },
+            {
+                path: "/contact",
+                element: <Contact />
             },
             {
                 path: "/storyHub",
