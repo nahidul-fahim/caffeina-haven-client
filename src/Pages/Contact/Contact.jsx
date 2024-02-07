@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-import ButtonMain from "../../Components/ButtonMain/ButtonMain";
 import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 
