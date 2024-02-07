@@ -1,3 +1,4 @@
+import InstagramPost from "../../Components/InstagramPost/InstagramPost";
 import About from "./About";
 import Slider from "./Slider";
 import WhyUs from "./WhyUs";
@@ -10,6 +11,7 @@ const Home = () => {
             <Slider />
             <About />
             <WhyUs />
+            <InstagramPost />
             <WorkingHours />
         </div>
     );

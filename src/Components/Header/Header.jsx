@@ -2,7 +2,6 @@ import { Link, NavLink } from "react-router-dom";
 import ButtonSecond from "../ButtonSecond/ButtonSecond";
 import { FaBarsStaggered } from "react-icons/fa6";
 import useAuthContext from "../../Hooks/useAuthContext/useAuthContext";
-import { Spinner } from "keep-react";
 import useCurrentUser from "../../Hooks/useCurrentUser/useCurrentUser";
 
 
@@ -72,7 +71,7 @@ const Header = () => {
 
                 {/* sign in button or user details */}
                 {
-                    authLoading ? <Spinner className="text-second" size="sm" />
+                    authLoading ? <span className="loading loading-ring loading-sm"></span>
                         :
                         <div>
                             {
