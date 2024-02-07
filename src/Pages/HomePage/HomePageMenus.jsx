@@ -42,13 +42,6 @@ const HomePageMenus = () => {
             </div>
 
             <Link to={"/allMenus"}><ButtonMain buttonText={"View Menus"} /></Link>
-
-
-
-
-
-
-
         </div>
     );
 };

@@ -23,7 +23,7 @@ const InstagramPost = () => {
     return (
 
         <div className="w-full mx-auto relative mt-14">
-            <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
+            <div className="grid grid-cols-3 md:grid-cols-6 gap-2 opacity-70">
                 <img src={img19} alt="" className="md:col-span-2 md:row-span-2 justify-self-stretch" />
                 <img src={img2} alt="" className="self-stretch justify-self-stretch" />
                 <img src={img3} alt="" className="self-stretch justify-self-stretch" />

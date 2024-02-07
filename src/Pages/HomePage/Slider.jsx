@@ -5,9 +5,9 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import ButtonSecond from "../../Components/ButtonSecond/ButtonSecond";
 
 
-const sliderImg1 = "https://i.ibb.co/2gcynV3/st-coffee2-jpg.webp";
+const sliderImg1 = "https://i.ibb.co/G2q3W6L/snezhana-hulak-TUc-AOOHd-Mek-unsplash-2.jpg";
 const sliderImg2 = "https://i.ibb.co/xM81mdR/st-coffee5-jpg.webp";
-const sliderImg3 = "https://i.ibb.co/3pt67Pp/st-coffee6-jpg.webp";
+const sliderImg3 = "https://i.ibb.co/80qqPB8/restaurant.jpg";
 
 const Slider = () => {
 

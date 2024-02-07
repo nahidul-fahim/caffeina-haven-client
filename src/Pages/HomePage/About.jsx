@@ -4,7 +4,7 @@ import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 
 
 const img1 = "https://i.ibb.co/ynZfgtx/st-coffee1-jpg.webp"
-const img2 = "https://i.ibb.co/QJGxPZd/st-coffee3-jpg.webp"
+const img2 = "https://i.ibb.co/xM81mdR/st-coffee5-jpg.webp"
 
 const About = () => {
 

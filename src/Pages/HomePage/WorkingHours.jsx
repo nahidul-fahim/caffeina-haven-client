@@ -7,7 +7,7 @@ const img1 = "https://i.ibb.co/xqzG92t/st-coffee10.jpg";
 
 const WorkingHours = () => {
     return (
-        <div className="mt-[30px] md:mt-[50px] lg:mt-[70px] p-10 lg:p-[80px]"
+        <div className="mt-[30px] md:mt-[50px] lg:mt-[90px] p-10 lg:p-[80px]"
             style={{
                 backgroundImage: `linear-gradient(to right, #00000099, #00000073), url(${img1})`,
                 backgroundPosition: 'center',

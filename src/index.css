@@ -134,3 +134,5 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   height: 20px;
   border-width: thin;
 }
+
+.swiper-button-next { color: red; }
