@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import LoadingAnimation from "../../Components/LoadingAnimation/LoadingAnimation";
 import useCartItems from "../../Hooks/useCartItems/useCartItems";
 import { flexRender, getCoreRowModel, getPaginationRowModel, useReactTable } from "@tanstack/react-table";
+import { Link } from "react-router-dom";
 
 
 
@@ -81,7 +82,7 @@ const MyCart = () => {
                     min={1}
                     step={1}
                     defaultValue={JSON.parse(sessionStorage.getItem(row.row.original._id)) ? (JSON.parse(sessionStorage.getItem(row.row.original._id)))[0] : 1}
-                    className="bg-main p-4 w-[90px] focus:outline-none" />
+                    className="bg-main p-2 lg:p-4 w-[70px] lg:w-[90px] focus:outline-none" />
             </div>
         },
         {
@@ -131,8 +132,19 @@ const MyCart = () => {
             {/* cart page content section */}
             <div className="container mx-auto my-5 md:my-7 lg:my-10 w-full flex flex-col justify-center items-center gap-7 p-5">
 
+
+
+                {/* coupon functionality */}
+                <div className="w-full flex justify-end items-center">
+                    <form className="w-fit flex justify-end items-center gap-4">
+                        <input type="text" name="insertedCoupon" placeholder="Coupon code" id="insertedCoupon" className="focus:outline-none bg-third px-3 md:px-5 py-2 md:py-3 self-stretch font-body" />
+                        <input type="submit" value="Apply Coupon" className="bg-second px-3 md:px-5 py-2 md:py-3 font-heading uppercase cursor-pointer hover:bg-white hover:text-black duration-500 self-stretch" />
+                    </form>
+                </div>
+
+
                 {/* table to show all the products on cart */}
-                <table className="w-full bg-third font-body text-[16px]">
+                <table className="w-full bg-third font-body text-[16px] mt-5">
                     <thead>
                         {
                             table.getHeaderGroups().map((headerGroup, index) =>
@@ -164,9 +176,11 @@ const MyCart = () => {
 
 
                 {/* total count section */}
-                <div className="w-full bg-third px-5 py-10 mt-5">
+                <div className="w-full bg-third px-5 py-10 mt-5 flex flex-col justify-start items-center gap-4">
                     <h3 className="text-3xl font-heading uppercase text-white">Cart Total</h3>
-                    <div className="font-body flex justify-center items-center gap-5 mt-5">
+
+                    {/* subtotal and total */}
+                    <div className="w-full font-body flex flex-col md:flex-row justify-center items-center gap-5 mt-5">
                         <div className="w-full md:w-1/2 flex justify-between items-center border-[1px] border-lightBlack border-dotted p-3 self-stretch">
                             <p>Subtotal</p>
                             <p>${totalAmount}</p>
@@ -177,6 +191,9 @@ const MyCart = () => {
                             <p className="text-2xl">${totalAmount}</p>
                         </div>
                     </div>
+
+                    {/* checkout button */}
+                    <Link className="w-full bg-second py-3 text-xl md:py-4 font-heading uppercase text-center mt-3 hover:bg-white hover:text-black duration-500 font-medium">Proceed to checkout</Link>
                 </div>
 
             </div>
