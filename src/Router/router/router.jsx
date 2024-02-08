@@ -15,6 +15,7 @@ import FindATable from "../../Pages/FindATable/FindATable";
 import AllReservation from "../../Pages/AdminDashboardPages/AllReservation/AllReservation";
 import AboutUs from "../../Pages/AboutUs/AboutUs";
 import Contact from "../../Pages/Contact/Contact";
+import MyCart from "../../Pages/MyCart/MyCart";
 
 
 const router = createBrowserRouter([
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
             {
                 path: "/findATable",
                 element: <FindATable />
+            },
+            {
+                path: "/myCart",
+                element: <MyCart />
             },
         ],
     },

@@ -1,8 +1,10 @@
 import { Link, NavLink } from "react-router-dom";
 import ButtonSecond from "../ButtonSecond/ButtonSecond";
 import { FaBarsStaggered } from "react-icons/fa6";
+import { IoBagHandle } from "react-icons/io5";
 import useAuthContext from "../../Hooks/useAuthContext/useAuthContext";
 import useCurrentUser from "../../Hooks/useCurrentUser/useCurrentUser";
+import useCartItems from "../../Hooks/useCartItems/useCartItems";
 
 
 
@@ -14,6 +16,7 @@ const Header = () => {
     // hooks and custom hooks
     const { currentUser, authLoading, signOutUser } = useAuthContext();
     const { userPending, user } = useCurrentUser();
+    const { cartItemsPending, cartItems } = useCartItems();
 
 
     // navigation menu
@@ -53,21 +56,7 @@ const Header = () => {
     return (
         <nav className="container mx-auto absolute top-0 z-[99] flex flex-col justify-between items-center px-5 gap-0 overflow-x-hidden">
             {/* upper side heading */}
-            <div className="w-full py-2 flex justify-end items-center border-b-[1px] border-[#ffffff21] gap-3">
-                {/* show dashboard button if user is admin */}
-                {
-                    userPending ?
-                        <p className="text-lightWhite font-body">Loading...</p>
-                        :
-                        <>
-                            {
-                                user?.userType === "admin" ?
-                                    <Link to={"/dashboard"}><button className="uppercase text-white px-3 py-1 text-[14px] font-body hover:text-second duration-500 font-medium">Dashboard</button></Link>
-                                    :
-                                    ""
-                            }
-                        </>
-                }
+            <div className="w-full py-2 flex justify-end items-center border-b-[1px] border-[#ffffff21] gap-3 md:gap-5">
 
                 {/* sign in button or user details */}
                 {
@@ -87,6 +76,35 @@ const Header = () => {
                             }
                         </div>
                 }
+
+
+                {/* show dashboard button or cart button if user is admin */}
+                {
+                    user ?
+                        <>
+                            {
+                                userPending || cartItemsPending ?
+                                    <p className="text-lightWhite font-body">Loading...</p>
+                                    :
+                                    <>
+                                        {
+                                            user?.userType === "admin" ?
+                                                <Link to={"/dashboard"}><button className="bg-white uppercase font-medium text-main px-3 py-1 text-[14px] font-body hover:bg-main hover:text-white duration-500">Dashboard</button></Link>
+                                                :
+                                                <Link to={"/myCart"}>
+                                                    <div className="indicator">
+                                                        {cartItems.length > 0 ?
+                                                            <span className="indicator-item text-[14px] rounded-[50%] w-[22px] h-[22px] flex justify-center items-center bg-[#d10404] text-white font-body font-medium">{cartItems.length}</span> : ""}
+                                                        <button className="bg-white uppercase font-medium text-main px-3 py-1 text-[14px] font-body hover:bg-main hover:text-white duration-500 flex justify-center items-center gap-2">My Cart <IoBagHandle className="text-[18px]" /></button>
+                                                    </div>
+                                                </Link>
+                                        }
+                                    </>
+                            }
+                        </>
+                        :
+                        ""
+                }
             </div>
 
 
@@ -104,7 +122,7 @@ const Header = () => {
                     {navMenu}
                 </div>
 
-                {/* reservation button or  */}
+                {/* reservation button */}
                 <div className="hidden w-1/5 lg:flex justify-end items-center">
                     <Link to={"/findATable"}><ButtonSecond buttonText={"Find A Table"} /></Link>
                 </div>

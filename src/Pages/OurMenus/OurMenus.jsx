@@ -18,8 +18,6 @@ const OurMenus = () => {
     const [selectedOrigin, setSelectedOrigin] = useState("all");
     const { allMenusPending, allMenus } = useAllMenus(selectedCategory, selectedOrigin);
 
-    console.log(selectedOrigin)
-
 
 
     // conditional loading
