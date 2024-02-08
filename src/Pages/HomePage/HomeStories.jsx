@@ -40,10 +40,24 @@ const HomeStories = () => {
             {/* story slider */}
             <Swiper className='w-full'
                 modules={[Navigation]}
-                spaceBetween={50}
-                slidesPerView={3}
+                spaceBetween={20}
+                slidesPerView={1}
                 height={'350px'}
                 navigation
+                breakpoints={{
+                    480: {
+                        slidesPerView: 2,
+                        spaceBetween: 20
+                    },
+                    640: {
+                        slidesPerView: 2,
+                        spaceBetween: 30
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                        spaceBetween: 40
+                    },
+                }}
             >
                 {
                     stories?.map((story, index) => <SwiperSlide key={index}
@@ -62,13 +76,13 @@ const HomeStories = () => {
                         <span className='font-heading text-second text-xl font-semibold mb-3 uppercase'>{story?.userName}</span>
                         {story?.userPost}
                         <span className='mt-3 text-lightWhite text-[16px]'>{story?.postDate}</span>
-                        </SwiperSlide>)
+                    </SwiperSlide>)
                 }
             </Swiper>
 
 
             <Link to={"/storyHub"}><ButtonMain buttonText={"Story Hub"} /></Link>
-        </div>
+        </div >
     );
 };
 
