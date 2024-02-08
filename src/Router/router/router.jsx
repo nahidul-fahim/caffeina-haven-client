@@ -16,6 +16,7 @@ import AllReservation from "../../Pages/AdminDashboardPages/AllReservation/AllRe
 import AboutUs from "../../Pages/AboutUs/AboutUs";
 import Contact from "../../Pages/Contact/Contact";
 import MyCart from "../../Pages/MyCart/MyCart";
+import Coupons from "../../Pages/AdminDashboardPages/Coupons/Coupons";
 
 
 const router = createBrowserRouter([
@@ -88,6 +89,10 @@ const router = createBrowserRouter([
             {
                 path: "allReservation",
                 element: <AllReservation />,
+            },
+            {
+                path: "coupons",
+                element: <Coupons />,
             },
         ],
     },
