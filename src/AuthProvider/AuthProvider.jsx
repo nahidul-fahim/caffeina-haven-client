@@ -80,6 +80,7 @@ const AuthProvider = ({ children }) => {
             // }
             // if user is not available remove the access token
             // else {
+            // sessionStorage.clear()
             //     localStorage.removeItem('access-token')
             // }
         });
