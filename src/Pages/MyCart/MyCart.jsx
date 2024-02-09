@@ -19,10 +19,16 @@ const MyCart = () => {
     const [totalAmount, setTotalAmount] = useState(0);
 
 
-    // hook
     useEffect(() => {
-        handleCountTotal();
-    }, [])
+        if (!cartItemsPending) {
+            const totalPrice = cartItems.reduce((accumulator, item) => {
+                sessionStorage.setItem(item._id, JSON.stringify([1, parseFloat(item.foodPrice)]))
+                return accumulator += parseFloat(item.foodPrice);
+            }, 0)
+            setTotalAmount(totalPrice)
+        }
+    }, [cartItemsPending, cartItems])
+
 
 
     // handle quantity

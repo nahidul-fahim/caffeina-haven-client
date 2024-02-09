@@ -4,6 +4,7 @@ import useFailedToast from "../../Hooks/useFailedToast/useFailedToast";
 import useAxiosSecure from "../../Hooks/useAxiosSecure/useAxiosSecure";
 import useSuccessToast from "../../Hooks/useSuccessToast/useSuccessToast";
 import useCartItems from "../../Hooks/useCartItems/useCartItems";
+import { useRef } from "react";
 
 
 
@@ -19,32 +20,47 @@ const SingleMenuList = ({ singleMenu }) => {
     const failedToast = useFailedToast();
     const successToast = useSuccessToast();
     const { cartItemsRefetch } = useCartItems();
+    const cartAddingForm = useRef(null);
 
 
     // get today's date
     const todayDate = new Date().toDateString().slice(4);
 
 
+
+    // handle open modal
+    const handleOpenModal = id => {
+        document.getElementById(id).showModal()
+    }
+
+
+
     // handle add to cart
-    const handleAddToCart = id => {
+    const handleAddToCart = e => {
+        e.preventDefault();
         if (!user || userPending) {
-            return failedToast("Please sign in first!")
+            document.getElementById(_id).close();
+            return failedToast("Please sign in first!");
         }
 
+        const foodQuantity = e.target.foodQuantity.value;
         const buyerName = user?.userName;
         const buyerEmail = user?.userEmail;
         const buyerId = user?._id;
         const foodImage = itemImage;
         const foodName = itemName;
         const foodPrice = itemPrice;
-        const foodId = id;
+        const foodId = _id;
         const orderPlacingStatus = "pending";
 
-        const newOrderedFoodInfo = { buyerName, buyerEmail, buyerId, foodImage, foodName, foodPrice, foodId, orderPlacingStatus };
+        const newOrderedFoodInfo = { buyerName, buyerEmail, buyerId, foodImage, foodName, foodPrice, foodId, orderPlacingStatus, foodQuantity };
+
+        console.log(newOrderedFoodInfo)
 
         axiosSecure.post("/newOrderApi", newOrderedFoodInfo)
             .then(res => {
                 if (res.data.insertedId) {
+                    document.getElementById(_id).close();
                     successToast("Added to cart!")
                     cartItemsRefetch();
                 }
@@ -78,14 +94,51 @@ const SingleMenuList = ({ singleMenu }) => {
                     <p className="text-left font-body text-[16px] text-lightWhite">{itemDescription}</p>
 
                     {/* add to cart button */}
-                    <button onClick={() => handleAddToCart(_id)}
+                    <button onClick={() => handleOpenModal(_id)}
                         className="text-second p-1 rounded-[50%] text-[20px] hover:text-white duration-500 flex justify-center items-center">
                         <IoBagHandle />
                     </button>
                 </div>
 
             </div>
-        </div>
+
+
+            {/* cart adding modal */}
+            <dialog id={_id} className="modal modal-bottom sm:modal-middle py-5">
+                <div className="modal-box bg-third flex flex-col justify-center items-center gap-4 font-body border-[1px] border-dotted border-lightWhite">
+                    <h3 className="font-medium text-3xl">Place your order</h3>
+                    <button onClick={() => console.log(singleMenu)}>Click</button>
+                    <div className="modal-action w-full flex justify-center items-start gap-5">
+
+                        {/* show item details */}
+                        <div className="w-1/2 flex flex-col justify-start items-start gap-3">
+                            <img src={itemImage} alt="Item image" className="w-full rounded-lg" />
+                            <h3 className="text-2xl font-medium font-heading">{itemName}</h3>
+                        </div>
+
+                        {/* item quantity details */}
+                        <div className="w-1/2 flex flex-col justify-start items-start gap-5">
+
+                            <p className="font-body font-semibold text-3xl text-second">${itemPrice}</p>
+
+                            <form method="dialog"
+                                onSubmit={handleAddToCart}
+                                className="w-full flex flex-col justify-start items-start gap-3">
+                                {/* quantity */}
+                                <label className="text-lightWhite">Quantity *</label>
+                                <input required type="number" name="foodQuantity" id="foodQuantity" defaultValue={1} step={1} min={1} className="bg-main p-2 lg:p-4 w-[70px] lg:w-[90px] focus:outline-none" />
+                                {/* submit button */}
+                                <input type="submit" value="Add to Cart" className="w-full bg-second text-white px-4 py-3 hover:bg-white hover:text-black duration-500 cursor-pointer" />
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </dialog>
+
+
+
+        </div >
     );
 };
 
