@@ -21,6 +21,7 @@ const MyCart = () => {
     const axiosSecure = useAxiosSecure();
     const failedToast = useFailedToast();
     const [discount, setDiscount] = useState(null);
+    const [discountedAmount, setDiscountedAmount] = useState(null);
     const couponInput = useRef(null);
 
 
@@ -31,6 +32,7 @@ const MyCart = () => {
                 return accumulator += item.foodPrice * item.foodQuantity;
             }, 0)
             setTotalAmount(totalPrice)
+            setDiscountedAmount(totalPrice)
         }
     }, [cartItemsPending, cartItems])
 
@@ -47,11 +49,20 @@ const MyCart = () => {
                 const data = res.data;
                 if (data.coupon) {
                     couponInput.current.reset();
+                    applyDiscountPercentage(parseFloat(data.discountPercentage));
                     return setDiscount(parseFloat(data.discountPercentage));
                 }
                 failedToast("Invalid coupon")
             })
             .catch(err => failedToast(err.code));
+    }
+
+
+    // handle discounted price
+    const applyDiscountPercentage = discount => {
+        const actualDiscount = discount / 100;
+        const totalAfterDiscount = totalAmount - totalAmount * actualDiscount;
+        setDiscountedAmount(totalAfterDiscount.toFixed(2))
     }
 
 
@@ -186,14 +197,15 @@ const MyCart = () => {
 
                     {/* subtotal and total */}
                     <div className="w-full font-body flex flex-col md:flex-row justify-center items-center gap-5 mt-5">
+                        {/* subtotal */}
                         <div className="w-full md:w-1/2 flex justify-between items-center border-[1px] border-lightBlack border-dotted p-3 self-stretch">
                             <p>Subtotal</p>
                             <p>${totalAmount}</p>
                         </div>
-
+                        {/* total */}
                         <div className="w-full md:w-1/2 flex justify-between items-center border-[1px] border-lightBlack border-dotted p-3 self-stretch">
-                            <p className="text-2xl">Total</p>
-                            <p className="text-2xl">${totalAmount}</p>
+                            <p className="text-2xl">Total <span className="text-[18px] text-[#ff3b3b]">{discount ? `(${discount}% Discount)` : ""}</span></p>
+                            <p className="text-2xl">${discountedAmount}</p>
                         </div>
                     </div>
 
