@@ -17,6 +17,9 @@ import AboutUs from "../../Pages/AboutUs/AboutUs";
 import Contact from "../../Pages/Contact/Contact";
 import MyCart from "../../Pages/MyCart/MyCart";
 import Coupons from "../../Pages/AdminDashboardPages/Coupons/Coupons";
+import Checkout from "../../Pages/Checkout/Checkout";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import AdminRoute from "../AdminRoute/AdminRoute";
 
 
 const router = createBrowserRouter([
@@ -51,7 +54,11 @@ const router = createBrowserRouter([
             },
             {
                 path: "/myCart",
-                element: <MyCart />
+                element: <PrivateRoute><MyCart /></PrivateRoute>
+            },
+            {
+                path: "/checkout",
+                element: <PrivateRoute><Checkout /></PrivateRoute>
             },
         ],
     },
@@ -68,7 +75,7 @@ const router = createBrowserRouter([
     // admin dashboard pages
     {
         path: "dashboard",
-        element: <Dashboard />,
+        element: <PrivateRoute><AdminRoute><Dashboard /></AdminRoute></PrivateRoute>,
         children: [
             {
                 path: "addNewItem",

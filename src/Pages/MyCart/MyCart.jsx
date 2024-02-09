@@ -5,6 +5,9 @@ import { flexRender, getCoreRowModel, getPaginationRowModel, useReactTable } fro
 import { Link } from "react-router-dom";
 import useAxiosSecure from "../../Hooks/useAxiosSecure/useAxiosSecure";
 import useFailedToast from "../../Hooks/useFailedToast/useFailedToast";
+import { MdCancel } from "react-icons/md";
+import useSuccessToast from "../../Hooks/useSuccessToast/useSuccessToast";
+
 
 
 
@@ -16,10 +19,11 @@ const MyCart = () => {
 
 
     // hooks and custom Hooks
-    const { cartItemsPending, cartItems } = useCartItems();
+    const { cartItemsPending, cartItems, cartItemsRefetch } = useCartItems();
     const [totalAmount, setTotalAmount] = useState(0);
     const axiosSecure = useAxiosSecure();
     const failedToast = useFailedToast();
+    const successToast = useSuccessToast();
     const [discount, setDiscount] = useState(null);
     const [discountedAmount, setDiscountedAmount] = useState(null);
     const couponInput = useRef(null);
@@ -31,10 +35,24 @@ const MyCart = () => {
             const totalPrice = cartItems.reduce((accumulator, item) => {
                 return accumulator += item.foodPrice * item.foodQuantity;
             }, 0)
-            setTotalAmount(totalPrice)
-            setDiscountedAmount(totalPrice)
+            setTotalAmount(totalPrice.toFixed(2))
+            setDiscountedAmount(totalPrice.toFixed(2))
         }
     }, [cartItemsPending, cartItems])
+
+
+
+    // handle remove item from cart
+    const handleRemoveFromCart = id => {
+        axiosSecure.delete(`/deleteItemFromCartApi/${id}`)
+            .then(res => {
+                if (res.data.deletedCount > 0) {
+                    successToast("Item removed from cart!")
+                    cartItemsRefetch();
+                }
+            })
+            .catch(err => failedToast(err.code))
+    }
 
 
     // handle apply coupon functionality
@@ -70,6 +88,12 @@ const MyCart = () => {
 
     // columns for tanStack table
     const columns = [
+        {
+            accessorKey: "",
+            header: " ",
+            cell: row => <button onClick={() => handleRemoveFromCart(row.row.original._id)}
+                className="w-fit text-xl text-[#ff4747] hover:text-[#bd2a2a] duration-300"><MdCancel /> </button>
+        },
         {
             accessorKey: "",
             header: "#",
@@ -181,7 +205,7 @@ const MyCart = () => {
                     {/* coupon apply functionality functionality */}
                     <div className="w-full flex justify-end items-center">
                         <form onSubmit={handleApplyCoupon} ref={couponInput}
-                            className="w-fit flex justify-end items-center gap-4">
+                            className="w-full md:w-fit flex flex-col md:flex-row justify-end items-center gap-4 px-5 md:px-0">
                             {/* coupon code */}
                             <input type="text" name="couponCode" placeholder="Coupon code" id="couponCode" className="focus:outline-none bg-black px-3 md:px-5 py-2 md:py-3 self-stretch font-body" />
                             {/* submit button */}
@@ -210,7 +234,7 @@ const MyCart = () => {
                     </div>
 
                     {/* checkout button */}
-                    <Link className="w-full bg-second py-3 text-xl md:py-4 font-heading uppercase text-center mt-3 hover:bg-white hover:text-black duration-500 font-medium">Proceed to checkout</Link>
+                    <Link to={"/checkout"} className="w-full bg-second py-3 text-xl md:py-4 font-heading uppercase text-center mt-3 hover:bg-white hover:text-black duration-500 font-medium">Proceed to checkout</Link>
                 </div>
 
             </div>

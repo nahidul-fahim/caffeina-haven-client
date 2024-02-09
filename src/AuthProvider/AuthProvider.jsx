@@ -1,6 +1,7 @@
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import app from "../Firebase/Firebase.config";
+import useAxiosPublic from "../Hooks/useAxiosPublic/useAxiosPublic";
 // import useAxiosPublic from "../Hooks/useAxiosPublic/useAxiosPublic";
 
 
@@ -16,7 +17,7 @@ const AuthProvider = ({ children }) => {
     // hooks
     const [currentUser, setCurrentUser] = useState('')
     const [authLoading, setAuthLoading] = useState(true);
-    // const axiosPublic = useAxiosPublic();
+    const axiosPublic = useAxiosPublic();
 
 
     // email-password sign up function
@@ -68,26 +69,25 @@ const AuthProvider = ({ children }) => {
             setCurrentUser(user);
             setAuthLoading(false);
             // if user is available, send the user email to backend
-            // if (user) {
-            //     const userInfo = { email: user?.email }
-            //     axiosPublic.post("/jwt", userInfo)
-            //         .then(res => {
-            //             const token = res.data?.token
-            //             if (token) {
-            //                 localStorage.setItem('access-token', token);
-            //             }
-            //         })
-            // }
+            if (user) {
+                const userInfo = { email: user?.email }
+                axiosPublic.post("/jwt", userInfo)
+                    .then(res => {
+                        const token = res.data?.token
+                        if (token) {
+                            localStorage.setItem('access-token', token);
+                        }
+                    })
+            }
             // if user is not available remove the access token
-            // else {
-            // sessionStorage.clear()
-            //     localStorage.removeItem('access-token')
-            // }
+            else {
+                localStorage.removeItem('access-token')
+            }
         });
         return () => {
             unSubscribe();
         }
-    }, [])
+    }, [axiosPublic])
 
 
 
