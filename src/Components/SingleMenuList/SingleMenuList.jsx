@@ -43,23 +43,22 @@ const SingleMenuList = ({ singleMenu }) => {
             return failedToast("Please sign in first!");
         }
 
-        const foodQuantity = e.target.foodQuantity.value;
+        const foodQuantity = parseInt(e.target.foodQuantity.value);
         const buyerName = user?.userName;
         const buyerEmail = user?.userEmail;
         const buyerId = user?._id;
         const foodImage = itemImage;
         const foodName = itemName;
-        const foodPrice = itemPrice;
+        const foodPrice = parseFloat(itemPrice);
         const foodId = _id;
         const orderPlacingStatus = "pending";
 
         const newOrderedFoodInfo = { buyerName, buyerEmail, buyerId, foodImage, foodName, foodPrice, foodId, orderPlacingStatus, foodQuantity };
 
-        console.log(newOrderedFoodInfo)
-
         axiosSecure.post("/newOrderApi", newOrderedFoodInfo)
             .then(res => {
                 if (res.data.insertedId) {
+                    cartAddingForm.current.reset();
                     document.getElementById(_id).close();
                     successToast("Added to cart!")
                     cartItemsRefetch();
@@ -121,7 +120,7 @@ const SingleMenuList = ({ singleMenu }) => {
 
                             <p className="font-body font-semibold text-3xl text-second">${itemPrice}</p>
 
-                            <form method="dialog"
+                            <form method="dialog" ref={cartAddingForm}
                                 onSubmit={handleAddToCart}
                                 className="w-full flex flex-col justify-start items-start gap-3">
                                 {/* quantity */}
