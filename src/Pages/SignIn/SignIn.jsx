@@ -24,6 +24,10 @@ const SignIn = () => {
     const failedToast = useFailedToast();
 
 
+    // get the pathname
+    const from = location.state?.from?.pathname || "/";
+
+
     // get todays date
     const todayDate = new Date().toDateString().slice(4);
 
@@ -43,7 +47,7 @@ const SignIn = () => {
             .then(() => {
                 successToast("Signed in successfully!")
                 // Redirect to path after login
-                navigate(location?.state ? location.state : "/")
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 const errorCode = error.code;
@@ -76,7 +80,7 @@ const SignIn = () => {
                         .then(() => {
                             successToast("Successful!")
                             // Redirect to path after login
-                            navigate(location?.state ? location.state : "/")
+                            navigate(from, { replace: true });
                         })
                         // database post error
                         .catch(err => {

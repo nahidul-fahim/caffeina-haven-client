@@ -5,7 +5,6 @@ import Home from "../../Pages/HomePage/Home";
 import Register from "../../Pages/Register/Register";
 import SignIn from "../../Pages/SignIn/SignIn";
 import AddNewItem from "../../Pages/AdminDashboardPages/AddNewItem/AddNewItem";
-import Dashboard from "../../Layout/Dashboard/Dashboard";
 import OurMenus from "../../Pages/OurMenus/OurMenus";
 import AllUsers from "../../Pages/AdminDashboardPages/AllUsers/AllUsers";
 import AllItems from "../../Pages/AdminDashboardPages/AllItems/AllItems";
@@ -20,6 +19,7 @@ import Coupons from "../../Pages/AdminDashboardPages/Coupons/Coupons";
 import Checkout from "../../Pages/Checkout/Checkout";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import AdminRoute from "../AdminRoute/AdminRoute";
+import Dashboard from "../../Layout/Dashboard/Dashboard";
 
 
 const router = createBrowserRouter([
@@ -75,7 +75,7 @@ const router = createBrowserRouter([
     // admin dashboard pages
     {
         path: "dashboard",
-        element: <PrivateRoute><AdminRoute><Dashboard /></AdminRoute></PrivateRoute>,
+        element: <AdminRoute><Dashboard /></AdminRoute>,
         children: [
             {
                 path: "addNewItem",

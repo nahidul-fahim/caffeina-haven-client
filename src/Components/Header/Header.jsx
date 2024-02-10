@@ -18,6 +18,7 @@ const Header = () => {
     const { userPending, user } = useCurrentUser();
     const { cartItemsPending, cartItems } = useCartItems();
 
+    
 
     // navigation menu
     const navMenu =

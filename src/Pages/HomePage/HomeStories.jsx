@@ -63,7 +63,7 @@ const HomeStories = () => {
                     stories?.map((story, index) => <SwiperSlide key={index}
                         style={{
                             height: '350px',
-                            background: `linear-gradient(to top, #000000a6, #000000a6), url(${story?.postImage})`,
+                            background: `linear-gradient(to top, #000000cc, #000000d9), url(${story?.postImage})`,
                             backgroundPosition: 'center',
                             backgroundRepeat: 'no-repeat',
                             backgroundSize: 'cover',

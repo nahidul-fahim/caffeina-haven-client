@@ -28,20 +28,20 @@ const useAxiosSecure = () => {
     );
 
 
-    // axios interceptor in response to intercept 401 and 403 status
+    // intercepts 401 and 403 status
     axiosSecure.interceptors.response.use(function (response) {
         return response;
-    },
-        async function (error) {
-            const status = error?.request?.status;
-            if (status === 401 || status === 403) {
-                await signOutUser();
-                navigate("/signIn")
-            }
-            return Promise.reject.error;
+    }, async (error) => {
+        const status = error.response.status;
+        console.log('status error in the interceptor', status);
+        // for 401 or 403 logout the user and move the user to the login
+        if (status === 401 || status === 403) {
+            await signOutUser();
+            navigate("/signIn")
         }
-    )
+        return Promise.reject(error);
+    })
     return axiosSecure;
-}
+};
 
 export default useAxiosSecure;
