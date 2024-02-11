@@ -2,7 +2,7 @@ import axios from "axios";
 
 // create axios instance
 const axiosPublic = axios.create({
-    baseURL: 'http://localhost:5000'
+    baseURL: 'https://caffeina-haven-server.vercel.app'
 })
 
 const useAxiosPublic = () => {
