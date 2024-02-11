@@ -5,11 +5,12 @@ import { IoBagHandle } from "react-icons/io5";
 import useAuthContext from "../../Hooks/useAuthContext/useAuthContext";
 import useCurrentUser from "../../Hooks/useCurrentUser/useCurrentUser";
 import useCartItems from "../../Hooks/useCartItems/useCartItems";
-
-
+import { motion } from "framer-motion"
 
 // website logo
 const logo = "https://i.ibb.co/sR7yV2c/website-Logo.png";
+
+
 
 const Header = () => {
 
@@ -52,12 +53,52 @@ const Header = () => {
     }
 
 
+    // animations
+    const lowerSideHeader = {
+        hidden: {
+            opacity: 0.4,
+            y: '-100vh'
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                type: 'spring',
+                duration: 1.4,
+                bounce: 0.1,
+                delay: 0.1,
+            }
+        }
+    }
+
+    const upperSideHeader = {
+        hidden: {
+            opacity: 0.4,
+            x: '100vw'
+        },
+        visible: {
+            opacity: 1,
+            x: 0,
+            transition: {
+                type: 'spring',
+                duration: 1.2,
+                bounce: 0.1,
+                delay: 1,
+            }
+        }
+    }
+
 
 
     return (
-        <nav className="container mx-auto absolute top-0 left-[50%] translate-x-[-50%] z-[99] flex flex-col justify-between items-center px-5 gap-0">
+        <nav className="container mx-auto absolute top-0 left-[50%] translate-x-[-50%] z-[99] flex flex-col justify-between items-center px-5 gap-0 overflow-hidden">
             {/* upper side heading */}
-            <div className="w-full py-2 flex justify-end items-center border-b-[1px] border-[#ffffff21] gap-3 md:gap-5">
+            <motion.div
+                variants={upperSideHeader}
+                initial="hidden"
+                animate="visible"
+                viewport={{ once: false, amount: 0.7 }}
+                className="w-full py-2 flex justify-end items-center border-b-[1px] border-[#ffffff21] gap-3 md:gap-5 h-[62px]">
 
                 {/* sign in button or user details */}
                 {
@@ -106,10 +147,14 @@ const Header = () => {
                         :
                         ""
                 }
-            </div>
+            </motion.div>
 
             {/* lower side heading */}
-            <div className="navbar bg-[#ffffff00] w-full flex justify-between items-center">
+            <motion.div
+                variants={lowerSideHeader}
+                initial="hidden"
+                animate="visible"
+                className="navbar bg-[#ffffff00] w-full flex justify-between items-center">
 
                 {/* logo + small device toggle icon */}
                 <div className="w-[40%] lg:w-[30%] flex justify-start items-center gap-2">
@@ -133,7 +178,7 @@ const Header = () => {
                 <div className="w-[60%] lg:w-[20%] justify-end items-center">
                     <Link to={"/findATable"}><ButtonSecond buttonText={"Find A Table"} /></Link>
                 </div>
-            </div>
+            </motion.div>
         </nav>
     );
 };
