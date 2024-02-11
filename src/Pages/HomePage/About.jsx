@@ -10,7 +10,6 @@ const About = () => {
 
 
 
-
     return (
         <div className="container mx-auto p-5 mt-10">
 
@@ -34,7 +33,7 @@ const About = () => {
                 <div className="w-full md:w-1/2 py-5 md:p-[30px] lg:p-[70px] flex flex-col gap-5 self-stretch justify-center items-start order-1 md:order-2">
                     <SectionTitle smallText={"Coffee menu"} bigText={"Quality Kava Beans"} />
                     <p className="font-body text-lightWhite">Sip into perfection at our coffee haven, where aromatic blends meet exquisite flavors in a cozy ambiance. Explore the art of brewing and indulge in delightful treats, making every visit a delightful journey for your palate and soul.</p>
-                   <Link to={"/allMenus"}><ButtonMain buttonText="View menu" /></Link>
+                    <Link to={"/allMenus"}><ButtonMain buttonText="View menu" /></Link>
                 </div>
             </div>
 

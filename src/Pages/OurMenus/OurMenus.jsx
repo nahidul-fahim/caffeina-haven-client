@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LoadingAnimation from "../../Components/LoadingAnimation/LoadingAnimation";
 import SingleMenuList from "../../Components/SingleMenuList/SingleMenuList";
 import useAllMenus from "../../Hooks/useAllMenus/useAllMenus";
@@ -6,6 +6,7 @@ import { motion } from "framer-motion"
 import useUpAnimation from "../../Hooks/useUpAnimation/useUpAnimation";
 import useFadeAnimation from "../../Hooks/useFadeAnimation/useFadeAnimation";
 import useDownAnimation from "../../Hooks/useDownAnimation/useDownAnimation";
+import useScrollToTop from "../../Hooks/useScrollToTop/useScrollToTop";
 
 
 const bgImg = "https://i.ibb.co/R7zFLT7/home-bg-8-1.jpg";
@@ -24,6 +25,11 @@ const OurMenus = () => {
     const upAnimation = useUpAnimation();
     const fadeAnimation = useFadeAnimation();
     const downAnimation = useDownAnimation();
+    const scrollToTop = useScrollToTop();
+
+    useEffect(() => {
+        scrollToTop();
+    }, [scrollToTop])
 
 
 

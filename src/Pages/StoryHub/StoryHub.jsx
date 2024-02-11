@@ -1,6 +1,6 @@
 import { FaCamera } from "react-icons/fa6";
 import useAxiosPublic from "../../Hooks/useAxiosPublic/useAxiosPublic";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useCurrentUser from "../../Hooks/useCurrentUser/useCurrentUser";
 import { Link } from "react-router-dom";
 import ButtonMain from "../../Components/ButtonMain/ButtonMain";
@@ -14,6 +14,7 @@ import PinnedMemory from "./PinnedMemory";
 import { motion } from "framer-motion"
 import useUpAnimation from "../../Hooks/useUpAnimation/useUpAnimation";
 import useRightAnimation from "../../Hooks/useRightAnimation/useRightAnimation";
+import useScrollToTop from "../../Hooks/useScrollToTop/useScrollToTop";
 
 
 const bgImg = "https://i.ibb.co/fdNsdhd/coffee-bg-1.jpg";
@@ -34,6 +35,12 @@ const StoryHub = () => {
     const postMemoryForm = useRef(null);
     const upAnimation = useUpAnimation();
     const rightAnimation = useRightAnimation();
+    const scrollToTop = useScrollToTop();
+
+
+    useEffect(() => {
+        scrollToTop();
+    }, [scrollToTop])
 
 
 

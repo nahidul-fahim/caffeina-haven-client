@@ -3,6 +3,7 @@ import useCurrentUser from "../../Hooks/useCurrentUser/useCurrentUser";
 import { useEffect } from "react";
 import useDownAnimation from "../../Hooks/useDownAnimation/useDownAnimation";
 import { motion } from "framer-motion"
+import useScrollToTop from "../../Hooks/useScrollToTop/useScrollToTop";
 
 // website logo
 const logo = "https://i.ibb.co/sR7yV2c/website-Logo.png";
@@ -15,14 +16,16 @@ const Dashboard = () => {
     const { userPending, user } = useCurrentUser();
     const navigate = useNavigate();
     const downAnimation = useDownAnimation();
+    const scrollToTop = useScrollToTop();
 
 
     // redirect admin to the statistics page
     useEffect(() => {
+        scrollToTop();
         if (!userPending && user?.userType === "admin" && location.pathname.slice(0, 11) !== "/dashboard/") {
             navigate("/dashboard/adminStatistics")
         }
-    }, [location.pathname, user?.userType, userPending, navigate])
+    }, [location.pathname, user?.userType, userPending, navigate, scrollToTop])
 
 
 

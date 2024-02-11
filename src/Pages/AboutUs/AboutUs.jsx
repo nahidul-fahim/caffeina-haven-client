@@ -6,6 +6,8 @@ import InstagramPost from "../../Components/InstagramPost/InstagramPost";
 import useUpAnimation from "../../Hooks/useUpAnimation/useUpAnimation";
 import useRightAnimation from "../../Hooks/useRightAnimation/useRightAnimation";
 import useLeftAnimation from "../../Hooks/useLeftAnimation/useLeftAnimation";
+import useScrollToTop from "../../Hooks/useScrollToTop/useScrollToTop";
+import { useEffect } from "react";
 
 // image url
 const bgImg = "https://i.ibb.co/PrKSzcT/coffee-bg.jpg"
@@ -19,6 +21,13 @@ const AboutUs = () => {
     const upAnimation = useUpAnimation();
     const rightAnimation = useRightAnimation();
     const leftAnimation = useLeftAnimation();
+
+    // hooks
+    const scrollToTop = useScrollToTop();
+
+    useEffect(() => {
+        scrollToTop();
+    }, [scrollToTop])
 
 
     return (
@@ -83,10 +92,10 @@ const AboutUs = () => {
                 </div>
 
                 <motion.div
-                 variants={leftAnimation(1.3, 0.5)}
-                 initial="hidden"
-                 whileInView={"visible"}
-                className="w-full md:w-1/2">
+                    variants={leftAnimation(1.3, 0.5)}
+                    initial="hidden"
+                    whileInView={"visible"}
+                    className="w-full md:w-1/2">
                     <img src={iImg2} alt="" className="rounded-t-[250px]" />
                 </motion.div>
             </div>
