@@ -1,4 +1,4 @@
-import { Link, NavLink, Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Link, NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import useCurrentUser from "../../Hooks/useCurrentUser/useCurrentUser";
 import { useEffect } from "react";
 
@@ -13,10 +13,10 @@ const Dashboard = () => {
     const { userPending, user } = useCurrentUser();
     const navigate = useNavigate();
 
-    console.log(location)
 
+    // redirect admin to the statistics page
     useEffect(() => {
-        if (!userPending && user?.userType === "admin" && location.pathname.slice(0, 11) === "/dashboard") {
+        if (!userPending && user?.userType === "admin" && location.pathname.slice(0, 11) !== "/dashboard/") {
             navigate("/dashboard/adminStatistics")
         }
     }, [location.pathname, user?.userType, userPending, navigate])
