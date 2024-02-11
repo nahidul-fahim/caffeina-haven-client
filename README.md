@@ -1,4 +1,4 @@
-# Caffeina Haven - A Restaurant Management Website
+# Caffeina Haven - A Restaurant Management Website ☕
 
 ![Website's hero section](./src/assets/caffeina-hero-section.png)
 

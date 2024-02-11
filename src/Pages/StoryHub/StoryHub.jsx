@@ -120,14 +120,12 @@ const StoryHub = () => {
                 }
             })
                 .then(res => {
-                    console.log("image uploaded", res.data)
                     if (res.data) {
                         handleDbPost(res.data.data.display_url);
                     }
                 })
         }
         else {
-            console.log("no-image found")
             handleDbPost("no-image");
         }
     }

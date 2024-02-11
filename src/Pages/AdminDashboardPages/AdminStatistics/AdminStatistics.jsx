@@ -22,8 +22,6 @@ const AdminStatistics = () => {
         return <LoadingAnimation />
     }
 
-    console.log(statistics);
-
 
     return (
         <div className="mt-5 lg:mt-10 container mx-auto font-body flex flex-col md:flex-row flex-wrap justify-center md:justify-evenly items-stretch gap-8">

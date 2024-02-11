@@ -18,7 +18,7 @@ const Header = () => {
     const { userPending, user } = useCurrentUser();
     const { cartItemsPending, cartItems } = useCartItems();
 
-    
+
 
     // navigation menu
     const navMenu =
@@ -55,7 +55,7 @@ const Header = () => {
 
 
     return (
-        <nav className="container mx-auto absolute top-0 z-[99] flex flex-col justify-between items-center px-5 gap-0 overflow-x-hidden">
+        <nav className="container mx-auto absolute top-0 left-[50%] translate-x-[-50%] z-[99] flex flex-col justify-between items-center px-5 gap-0">
             {/* upper side heading */}
             <div className="w-full py-2 flex justify-end items-center border-b-[1px] border-[#ffffff21] gap-3 md:gap-5">
 
@@ -85,18 +85,18 @@ const Header = () => {
                         <>
                             {
                                 userPending || cartItemsPending ?
-                                    <p className="text-lightWhite font-body">Loading...</p>
+                                    <p className="text-lightWhite text-[14px] font-body">Loading...</p>
                                     :
                                     <>
                                         {
                                             user?.userType === "admin" ?
-                                                <Link to={"/dashboard"}><button className="bg-white uppercase font-medium text-main px-3 py-1 text-[14px] font-body hover:bg-main hover:text-white duration-500">Dashboard</button></Link>
+                                                <Link to={"/dashboard"}><button className="uppercase font-medium text-white px-1 py-1 text-[14px] font-body duration-500 menu-link">Dashboard</button></Link>
                                                 :
                                                 <Link to={"/myCart"}>
                                                     <div className="indicator">
                                                         {cartItems.length > 0 ?
-                                                            <span className="indicator-item text-[14px] rounded-[50%] w-[22px] h-[22px] flex justify-center items-center bg-[#d10404] text-white font-body font-medium">{cartItems.length}</span> : ""}
-                                                        <button className="bg-white uppercase font-medium text-main px-3 py-1 text-[14px] font-body hover:bg-main hover:text-white duration-500 flex justify-center items-center gap-2">My Cart <IoBagHandle className="text-[18px]" /></button>
+                                                            <span className="indicator-item text-[12px] rounded-[50%] w-[20px] h-[20px] flex justify-center items-center bg-[#d10404] text-white font-body font-medium">{cartItems.length}</span> : ""}
+                                                        <button className="uppercase font-medium text-white p-1 font-body hover:text-second duration-500"> <IoBagHandle className="text-[30px]" /></button>
                                                     </div>
                                                 </Link>
                                         }
@@ -108,34 +108,32 @@ const Header = () => {
                 }
             </div>
 
+            {/* lower side heading */}
+            <div className="navbar bg-[#ffffff00] w-full flex justify-between items-center">
 
-
-            {/* bottom side heading */}
-            <div className="w-full flex justify-between items-center py-2">
-
-                {/* logo */}
-                <div className="w-2/5 lg:w-1/5 flex justify-start items-center">
-                    <Link to={"/"}><img src={logo} alt="website logo" className="w-[80%] md:w-[50%] lg:w-[65%] cursor-pointer hover:scale-110 duration-500" /></Link>
+                {/* logo + small device toggle icon */}
+                <div className="w-[40%] lg:w-[30%] flex justify-start items-center gap-2">
+                    <div className="dropdown lg:hidden">
+                        <div tabIndex={0} role="button">
+                            <FaBarsStaggered className="text-xl" />
+                        </div>
+                        <ul tabIndex={0} className="menu menu-sm space-y-3 text-[18px] dropdown-content mt-5 z-[1] p-5 shadow w-52 font-body bg-black">
+                            {navMenu}
+                        </ul>
+                    </div>
+                    <Link to={"/"}><img src={logo} alt="website logo" className="w-full md:w-[50%] lg:w-[65%] cursor-pointer hover:scale-110 duration-500" /></Link>
                 </div>
 
-                {/* nav menu */}
-                <div className="w-3/5 hidden lg:flex justify-center items-center gap-8 font-body">
+                {/* navigation menu for larger device */}
+                <div className="hidden lg:flex w-0 lg:w-[50%] font-body justify-center items-center gap-8">
                     {navMenu}
                 </div>
 
-                {/* reservation button */}
-                <div className="hidden w-1/5 lg:flex justify-end items-center">
+
+                <div className="w-[60%] lg:w-[20%] justify-end items-center">
                     <Link to={"/findATable"}><ButtonSecond buttonText={"Find A Table"} /></Link>
                 </div>
-
-                {/* smaller device nav menu icon */}
-                <div className="w-3/5 flex lg:hidden justify-end items-center">
-                    <FaBarsStaggered className="text-2xl" />
-                </div>
-
-
             </div>
-
         </nav>
     );
 };

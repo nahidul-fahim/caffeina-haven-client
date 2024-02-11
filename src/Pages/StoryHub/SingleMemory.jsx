@@ -20,14 +20,12 @@ const SingleMemory = ({ memory, memoriesRefetch }) => {
     // handle pin or unpin a post
     const handlePinPost = (id, pinUpdate) => {
         const pinnedStatus = pinUpdate;
-        console.log(pinnedStatus);
         const pinUpdateInfo = { pinnedStatus };
         let pinMessage = '';
         pinUpdate === 'unpin' ? pinMessage = "Unpinned!" : pinMessage = "Pinned!"
 
         axiosSecure.put(`/postInteractApi/${id}`, pinUpdateInfo)
             .then(res => {
-                console.log(res.data)
                 if (res.data.modifiedCount > 0) {
                     memoriesRefetch();
                     successToast(pinMessage)
