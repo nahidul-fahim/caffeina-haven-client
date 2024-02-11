@@ -73,12 +73,12 @@ const Header = () => {
 
     const upperSideHeader = {
         hidden: {
-            opacity: 0.4,
-            x: '100vw'
+            opacity: 0,
+            y: '-500px'
         },
         visible: {
             opacity: 1,
-            x: 0,
+            y: 0,
             transition: {
                 type: 'spring',
                 duration: 1.2,
@@ -91,7 +91,7 @@ const Header = () => {
 
 
     return (
-        <nav className="container mx-auto absolute top-0 left-[50%] translate-x-[-50%] z-[99] flex flex-col justify-between items-center px-5 gap-0 overflow-hidden">
+        <nav className="container mx-auto absolute top-0 left-[50%] translate-x-[-50%] z-[99] flex flex-col justify-between items-center px-5 gap-0">
             {/* upper side heading */}
             <motion.div
                 variants={upperSideHeader}

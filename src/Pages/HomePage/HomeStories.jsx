@@ -1,9 +1,9 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import { Navigation } from 'swiper/modules';
 import CenteredSectionTitle from '../../Components/CenteredSectionTitle/CenteredSectionTitle';
 import { Link } from 'react-router-dom';
 import ButtonMain from '../../Components/ButtonMain/ButtonMain';
@@ -39,9 +39,14 @@ const HomeStories = () => {
 
             {/* story slider */}
             <Swiper className='w-full'
-                modules={[Navigation]}
+                modules={[Navigation, Autoplay]}
                 spaceBetween={20}
                 slidesPerView={1}
+                loop={true}
+                autoplay={{
+                    delay: 2000,
+                    disableOnInteraction: false
+                }}
                 height={'350px'}
                 navigation
                 breakpoints={{

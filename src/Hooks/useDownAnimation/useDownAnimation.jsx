@@ -6,8 +6,8 @@ const useDownAnimation = () => {
     const downAnimation = (duration, delay) => {
         return {
             hidden: {
-                opacity: 0.4,
-                y: '-100vh'
+                opacity: 0,
+                y: '-50px'
             },
             visible: {
                 opacity: 1,

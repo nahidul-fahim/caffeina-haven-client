@@ -1,3 +1,5 @@
+import useFadeAnimation from "../../Hooks/useFadeAnimation/useFadeAnimation";
+import { motion } from "framer-motion";
 
 
 const img19 = "https://i.ibb.co/ygVGcbY/ig-9.jpg";
@@ -20,6 +22,9 @@ const img15 = "https://i.ibb.co/kGB5dvN/coffee-bg-1.jpg";
 
 const InstagramPost = () => {
 
+    // hooks
+    const fadeAnimation = useFadeAnimation();
+
     return (
 
         <div className="w-full mx-auto relative mt-14">
@@ -41,9 +46,13 @@ const InstagramPost = () => {
                 <img src={img15} alt="" className="self-stretch justify-self-stretch" />
             </div>
 
-            <div className="bg-white w-[250px] lg:w-[300px] h-[250px] lg:h-[300px] rounded-[50%] flex justify-center items-center absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-[99] text-second hover:text-main duration-300">
+            <motion.div
+                variants={fadeAnimation(1.4, .4)}
+                initial="hidden"
+                whileInView={"visible"}
+                className="bg-white w-[250px] lg:w-[300px] h-[250px] lg:h-[300px] rounded-[50%] flex justify-center items-center absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-[99] text-second hover:text-main duration-300">
                 <p className="text-center font-body font-medium capitalize text-2xl">Follow Us on <br />Instagram</p>
-            </div>
+            </motion.div>
         </div>
 
     )

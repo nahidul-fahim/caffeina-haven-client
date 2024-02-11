@@ -1,17 +1,16 @@
 
 
-const useLeftAnimation = () => {
+const useScaleAnimation = () => {
 
-
-    const leftAnimation = (duration, delay) => {
+    const scaleAnimation = (duration, delay) => {
         return {
             hidden: {
                 opacity: 0,
-                x: '100px'
+                scale: 0,
             },
             visible: {
                 opacity: 1,
-                x: 0,
+                scale: 1,
                 transition: {
                     type: 'spring',
                     duration: duration,
@@ -22,8 +21,7 @@ const useLeftAnimation = () => {
         }
     }
 
-
-    return leftAnimation;
+    return scaleAnimation;
 };
 
-export default useLeftAnimation;
+export default useScaleAnimation;

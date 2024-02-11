@@ -1,17 +1,15 @@
 
 
-const useLeftAnimation = () => {
+const useFadeAnimation = () => {
 
 
-    const leftAnimation = (duration, delay) => {
+    const fadeAnimation = (duration, delay) => {
         return {
             hidden: {
                 opacity: 0,
-                x: '100px'
             },
             visible: {
                 opacity: 1,
-                x: 0,
                 transition: {
                     type: 'spring',
                     duration: duration,
@@ -23,7 +21,7 @@ const useLeftAnimation = () => {
     }
 
 
-    return leftAnimation;
+    return fadeAnimation;
 };
 
-export default useLeftAnimation;
+export default useFadeAnimation;

@@ -7,7 +7,9 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure/useAxiosSecure";
 import useFailedToast from "../../Hooks/useFailedToast/useFailedToast";
 import { MdCancel } from "react-icons/md";
 import useSuccessToast from "../../Hooks/useSuccessToast/useSuccessToast";
-
+import { motion } from "framer-motion"
+import useUpAnimation from "../../Hooks/useUpAnimation/useUpAnimation";
+import useFadeAnimation from "../../Hooks/useFadeAnimation/useFadeAnimation";
 
 
 
@@ -27,6 +29,8 @@ const MyCart = () => {
     const [discount, setDiscount] = useState(null);
     const [discountedAmount, setDiscountedAmount] = useState(null);
     const couponInput = useRef(null);
+    const upAnimation = useUpAnimation();
+    const fadeAnimation = useFadeAnimation();
 
 
     // count the total here
@@ -163,7 +167,11 @@ const MyCart = () => {
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover'
                 }}>
-                <h1 className="text-5xl uppercase md:text-7xl font-heading text-center mt-[100px]">Cart</h1>
+                <motion.h1
+                    variants={upAnimation(1.2, 0)}
+                    initial="hidden"
+                    whileInView={"visible"}
+                    className="text-5xl uppercase md:text-7xl font-heading text-center mt-[100px]">Cart</motion.h1>
             </div>
 
 
@@ -174,7 +182,11 @@ const MyCart = () => {
                 {/* table + coupon */}
                 <div className="w-full bg-third flex flex-col justify-center items-center gap-5 py-7">
                     {/* table to show all the products on cart */}
-                    <table className="w-full font-body text-[16px] mt-5">
+                    <motion.table
+                        variants={fadeAnimation(1.2, 0)}
+                        initial="hidden"
+                        whileInView={"visible"}
+                        className="w-full font-body text-[16px] mt-5">
                         <thead>
                             {
                                 table.getHeaderGroups().map((headerGroup, index) =>
@@ -202,7 +214,7 @@ const MyCart = () => {
                                     </tr>)
                             }
                         </tbody>
-                    </table>
+                    </motion.table>
 
                     {/* coupon apply functionality functionality */}
                     <div className="w-full flex justify-end items-center">
@@ -218,7 +230,11 @@ const MyCart = () => {
 
 
                 {/* total count section */}
-                <div className="w-full bg-third px-5 py-10 mt-5 flex flex-col justify-start items-center gap-4">
+                <motion.div
+                    variants={upAnimation(1.2, 0.1)}
+                    initial="hidden"
+                    whileInView={"visible"}
+                    className="w-full bg-third px-5 py-10 mt-5 flex flex-col justify-start items-center gap-4">
                     <h3 className="text-3xl font-heading uppercase text-white">Cart Total</h3>
 
                     {/* subtotal and total */}
@@ -237,7 +253,7 @@ const MyCart = () => {
 
                     {/* checkout button */}
                     <Link to={"/checkout"} state={{ 'totalAmount': totalAmount, 'discountedAmount': discountedAmount }} className="w-full bg-second py-3 text-xl md:py-4 font-heading uppercase text-center mt-3 hover:bg-white hover:text-black duration-500 font-medium">Proceed to checkout</Link>
-                </div>
+                </motion.div>
 
             </div>
 

@@ -11,6 +11,9 @@ import { useQuery } from "@tanstack/react-query";
 import LoadingAnimation from "../../Components/LoadingAnimation/LoadingAnimation";
 import SingleMemory from "./SingleMemory";
 import PinnedMemory from "./PinnedMemory";
+import { motion } from "framer-motion"
+import useUpAnimation from "../../Hooks/useUpAnimation/useUpAnimation";
+import useRightAnimation from "../../Hooks/useRightAnimation/useRightAnimation";
 
 
 const bgImg = "https://i.ibb.co/fdNsdhd/coffee-bg-1.jpg";
@@ -29,6 +32,8 @@ const StoryHub = () => {
     const failedToast = useFailedToast();
     const successToast = useSuccessToast();
     const postMemoryForm = useRef(null);
+    const upAnimation = useUpAnimation();
+    const rightAnimation = useRightAnimation();
 
 
 
@@ -140,7 +145,7 @@ const StoryHub = () => {
 
 
     return (
-        <div className="mx-auto">
+        <div className="mx-auto overflow-x-hidden">
             {/* page heading section */}
             <div
                 className="h-[400px] md:h-[450px] lg:h-[500px] flex flex-col justify-center items-center gap-4"
@@ -153,7 +158,11 @@ const StoryHub = () => {
                 {/* post form for user to post something */}
                 {
                     user ?
-                        <div className="mt-[100px] bg-[#0e0e0e77] rounded-[10px] w-[95%] lg:w-[750px] flex flex-col justify-start items-center p-5 gap-2 font-body">
+                        <motion.div
+                            variants={upAnimation(1.5, 0.3)}
+                            initial="hidden"
+                            whileInView={"visible"}
+                            className="mt-[100px] bg-[#0e0e0e77] rounded-[10px] w-[95%] lg:w-[750px] flex flex-col justify-start items-center p-5 gap-2 font-body">
                             <h1 className="text-xl text-center uppercase md:text-2xl font-heading">Share Your Thoughts</h1>
 
                             {/* message and image post */}
@@ -194,7 +203,7 @@ const StoryHub = () => {
                                         </div>
                                     </form>
                             }
-                        </div>
+                        </motion.div>
                         :
                         <div className="flex flex-col gap-4 justify-center items-center p-5 bg-[#0e0e0e77] mt-[100px]">
                             <p className="text-2xl md:text-3xl text-center font-heading text-white">Please sign in to share your thoughts</p>
@@ -209,14 +218,18 @@ const StoryHub = () => {
             <div className="container mx-auto p-5 flex flex-col lg:flex-row justify-center items-start gap-10 mt-10 min-h-[100vh] overflow-y-auto">
 
                 {/* pinned memories shortcut */}
-                <div className="w-full lg:w-1/5 flex flex-col justify-start items-start gap-4 py-5 sticky-div">
+                <motion.div
+                    variants={rightAnimation(.8, 0.5)}
+                    initial="hidden"
+                    whileInView={"visible"}
+                    className="w-full lg:w-1/5 flex flex-col justify-start items-start gap-4 py-5 sticky-div">
                     <h3 className="font-heading text-xl text-white uppercase">Pinned</h3>
                     <div className="w-full grid grid-cols-4 md:grid-cols-6 lg:grid-cols-2">
                         {
                             allMemories.map((memory, index) => <PinnedMemory key={index} memory={memory}></PinnedMemory>)
                         }
                     </div>
-                </div>
+                </motion.div>
 
 
                 {/* show memories */}

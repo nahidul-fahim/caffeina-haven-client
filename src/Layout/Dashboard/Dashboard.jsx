@@ -1,6 +1,8 @@
 import { Link, NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import useCurrentUser from "../../Hooks/useCurrentUser/useCurrentUser";
 import { useEffect } from "react";
+import useDownAnimation from "../../Hooks/useDownAnimation/useDownAnimation";
+import { motion } from "framer-motion"
 
 // website logo
 const logo = "https://i.ibb.co/sR7yV2c/website-Logo.png";
@@ -12,6 +14,7 @@ const Dashboard = () => {
     const location = useLocation();
     const { userPending, user } = useCurrentUser();
     const navigate = useNavigate();
+    const downAnimation = useDownAnimation();
 
 
     // redirect admin to the statistics page
@@ -26,20 +29,38 @@ const Dashboard = () => {
     // navigation menu
     const adminMenu =
         <>
-            <NavLink to={"/"}>Home</NavLink>
-            <NavLink to={"/dashboard/adminStatistics"}>Statistics</NavLink>
-            <NavLink to={"/dashboard/addNewItem"}>Add Item</NavLink>
-            <NavLink to={"/dashboard/allItems"}>All Items</NavLink>
-            <NavLink to={"/dashboard/allUsers"}>All Users</NavLink>
-            <NavLink to={"/dashboard/allReservation"}>All Reservation</NavLink>
-            <NavLink to={"/dashboard/coupons"}>Coupons</NavLink>
+            <NavLink to={"/"} className={({ isActive }) => {
+                return isActive ? "active-menu-link" : "menu-link"
+            }}>Home</NavLink>
+            <NavLink to={"/dashboard/adminStatistics"} className={({ isActive }) => {
+                return isActive ? "active-menu-link" : "menu-link"
+            }} >Statistics</NavLink>
+            <NavLink to={"/dashboard/addNewItem"} className={({ isActive }) => {
+                return isActive ? "active-menu-link" : "menu-link"
+            }}>Add Item</NavLink>
+            <NavLink to={"/dashboard/allItems"} className={({ isActive }) => {
+                return isActive ? "active-menu-link" : "menu-link"
+            }}>All Items</NavLink>
+            <NavLink to={"/dashboard/allUsers"} className={({ isActive }) => {
+                return isActive ? "active-menu-link" : "menu-link"
+            }}>All Users</NavLink>
+            <NavLink to={"/dashboard/allReservation"} className={({ isActive }) => {
+                return isActive ? "active-menu-link" : "menu-link"
+            }}>All Reservation</NavLink>
+            <NavLink to={"/dashboard/coupons"} className={({ isActive }) => {
+                return isActive ? "active-menu-link" : "menu-link"
+            }}>Coupons</NavLink>
         </>
 
 
 
     return (
         <div>
-            <div className="h-[400px] flex flex-col justify-center items-center gap-4"
+            <motion.div
+                variants={downAnimation(1.2, 0)}
+                initial="hidden"
+                whileInView={"visible"}
+                className="h-[400px] flex flex-col justify-center items-center gap-4"
                 style={{
                     background: `linear-gradient(to top, #000000f2, #00000072), url(${bgImg})`,
                     backgroundPosition: 'center',
@@ -51,7 +72,7 @@ const Dashboard = () => {
                 <div className="flex flex-wrap justify-center items-center gap-5 font-body mt-2">
                     {adminMenu}
                 </div>
-            </div>
+            </motion.div>
 
             {/* outlet div */}
             <div className="container mx-auto p-5">

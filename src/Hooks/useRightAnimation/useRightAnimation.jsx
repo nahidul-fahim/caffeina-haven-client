@@ -1,13 +1,12 @@
 
 
-const useLeftAnimation = () => {
+const useRightAnimation = () => {
 
-
-    const leftAnimation = (duration, delay) => {
+    const rightAnimation = (duration, delay) => {
         return {
             hidden: {
                 opacity: 0,
-                x: '100px'
+                x: '-100px'
             },
             visible: {
                 opacity: 1,
@@ -22,8 +21,7 @@ const useLeftAnimation = () => {
         }
     }
 
-
-    return leftAnimation;
+    return rightAnimation;
 };
 
-export default useLeftAnimation;
+export default useRightAnimation;
