@@ -37,6 +37,7 @@ const MyCart = () => {
             }, 0)
             setTotalAmount(totalPrice.toFixed(2))
             setDiscountedAmount(totalPrice.toFixed(2))
+            sessionStorage.setItem("final-amount", totalPrice.toFixed(2))
         }
     }, [cartItemsPending, cartItems])
 
@@ -80,7 +81,8 @@ const MyCart = () => {
     const applyDiscountPercentage = discount => {
         const actualDiscount = discount / 100;
         const totalAfterDiscount = totalAmount - totalAmount * actualDiscount;
-        setDiscountedAmount(totalAfterDiscount.toFixed(2))
+        setDiscountedAmount(totalAfterDiscount.toFixed(2));
+        sessionStorage.setItem("final-amount", totalAfterDiscount.toFixed(2))
     }
 
 
@@ -124,7 +126,7 @@ const MyCart = () => {
         {
             accessorKey: "",
             header: "Subtotal",
-            cell: row => <p className="text-center text-[16px]">$ {(row.row.original.foodQuantity) * (row.row.original.foodPrice)}</p>
+            cell: row => <p className="text-center text-[16px]">$ {parseFloat((row.row.original.foodQuantity) * (row.row.original.foodPrice)).toFixed(2)}</p>
         },
     ]
 
@@ -234,7 +236,7 @@ const MyCart = () => {
                     </div>
 
                     {/* checkout button */}
-                    <Link to={"/checkout"} className="w-full bg-second py-3 text-xl md:py-4 font-heading uppercase text-center mt-3 hover:bg-white hover:text-black duration-500 font-medium">Proceed to checkout</Link>
+                    <Link to={"/checkout"} state={{ 'totalAmount': totalAmount, 'discountedAmount': discountedAmount }} className="w-full bg-second py-3 text-xl md:py-4 font-heading uppercase text-center mt-3 hover:bg-white hover:text-black duration-500 font-medium">Proceed to checkout</Link>
                 </div>
 
             </div>

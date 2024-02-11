@@ -11,12 +11,12 @@ const AdminRoute = ({ children }) => {
     const { authLoading, currentUser } = useAuthContext();
     const location = useLocation();
 
-    console.log(authLoading, isAdminPending)
+    
     if (authLoading || isAdminPending) {
         return <LoadingAnimation />
     }
 
-    console.log("Current user:", currentUser, "||", "Is Admin:", isAdmin)
+
     if (currentUser && isAdmin) {
         return children;
     }

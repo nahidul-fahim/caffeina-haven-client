@@ -27,12 +27,10 @@ const SingleMenuList = ({ singleMenu }) => {
     const todayDate = new Date().toDateString().slice(4);
 
 
-
     // handle open modal
     const handleOpenModal = id => {
         document.getElementById(id).showModal()
     }
-
 
 
     // handle add to cart
@@ -93,8 +91,8 @@ const SingleMenuList = ({ singleMenu }) => {
                     <p className="text-left font-body text-[16px] text-lightWhite">{itemDescription}</p>
 
                     {/* add to cart button */}
-                    <button onClick={() => handleOpenModal(_id)}
-                        className="text-second p-1 rounded-[50%] text-[20px] hover:text-white duration-500 flex justify-center items-center">
+                    <button disabled={user?.userType === "admin"} onClick={() => handleOpenModal(_id)}
+                        className="text-second p-1 rounded-[50%] text-[20px] hover:text-white duration-500 flex justify-center items-center disabled:opacity-30 disabled:cursor-not-allowed">
                         <IoBagHandle />
                     </button>
                 </div>
@@ -106,7 +104,6 @@ const SingleMenuList = ({ singleMenu }) => {
             <dialog id={_id} className="modal modal-bottom sm:modal-middle py-5">
                 <div className="modal-box bg-third flex flex-col justify-center items-center gap-4 font-body border-[1px] border-dotted border-lightWhite">
                     <h3 className="font-medium text-3xl">Place your order</h3>
-                    <button onClick={() => console.log(singleMenu)}>Click</button>
                     <div className="modal-action w-full flex justify-center items-start gap-5">
 
                         {/* show item details */}

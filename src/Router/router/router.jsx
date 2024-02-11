@@ -20,6 +20,7 @@ import Checkout from "../../Pages/Checkout/Checkout";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import Dashboard from "../../Layout/Dashboard/Dashboard";
+import AdminStatistics from "../../Pages/AdminDashboardPages/AdminStatistics/AdminStatistics";
 
 
 const router = createBrowserRouter([
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
         path: "dashboard",
         element: <AdminRoute><Dashboard /></AdminRoute>,
         children: [
+            {
+                path: "adminStatistics",
+                element: <AdminStatistics />,
+            },
             {
                 path: "addNewItem",
                 element: <AddNewItem />,

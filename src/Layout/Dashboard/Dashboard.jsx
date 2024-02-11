@@ -1,4 +1,6 @@
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
+import useCurrentUser from "../../Hooks/useCurrentUser/useCurrentUser";
+import { useEffect } from "react";
 
 // website logo
 const logo = "https://i.ibb.co/sR7yV2c/website-Logo.png";
@@ -6,13 +8,26 @@ const bgImg = "https://i.ibb.co/FWDxTW1/restaurant.jpg";
 
 const Dashboard = () => {
 
+    // hooks and custom hooks
+    const location = useLocation();
+    const { userPending, user } = useCurrentUser();
+    const navigate = useNavigate();
+
+    console.log(location)
+
+    useEffect(() => {
+        if (!userPending && user?.userType === "admin" && location.pathname.slice(0, 11) === "/dashboard") {
+            navigate("/dashboard/adminStatistics")
+        }
+    }, [location.pathname, user?.userType, userPending, navigate])
+
 
 
     // navigation menu
     const adminMenu =
         <>
             <NavLink to={"/"}>Home</NavLink>
-            <NavLink>Statistics</NavLink>
+            <NavLink to={"/dashboard/adminStatistics"}>Statistics</NavLink>
             <NavLink to={"/dashboard/addNewItem"}>Add Item</NavLink>
             <NavLink to={"/dashboard/allItems"}>All Items</NavLink>
             <NavLink to={"/dashboard/allUsers"}>All Users</NavLink>
