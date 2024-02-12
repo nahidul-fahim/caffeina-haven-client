@@ -21,6 +21,7 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import Dashboard from "../../Layout/Dashboard/Dashboard";
 import AdminStatistics from "../../Pages/AdminDashboardPages/AdminStatistics/AdminStatistics";
+import CheckoutSuccess from "../../Pages/Checkout/CheckoutSuccess";
 
 
 const router = createBrowserRouter([
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
             {
                 path: "/checkout",
                 element: <PrivateRoute><Checkout /></PrivateRoute>
+            },
+            {
+                path: "/checkoutSuccess",
+                element: <PrivateRoute><CheckoutSuccess /></PrivateRoute>
             },
         ],
     },

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 // create axios instance
 const axiosSecure = axios.create({
     baseURL: 'https://caffeina-haven-server.vercel.app'
+    // baseURL: 'http://localhost:5000'
 })
 
 const useAxiosSecure = () => {

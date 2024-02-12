@@ -10,7 +10,6 @@ import useSuccessToast from "../../Hooks/useSuccessToast/useSuccessToast";
 import { motion } from "framer-motion"
 import useUpAnimation from "../../Hooks/useUpAnimation/useUpAnimation";
 import useFadeAnimation from "../../Hooks/useFadeAnimation/useFadeAnimation";
-import useScrollToTop from "../../Hooks/useScrollToTop/useScrollToTop";
 
 
 
@@ -32,12 +31,10 @@ const MyCart = () => {
     const couponInput = useRef(null);
     const upAnimation = useUpAnimation();
     const fadeAnimation = useFadeAnimation();
-    const scrollToTop = useScrollToTop();
 
 
     // count the total here
     useEffect(() => {
-        scrollToTop()
         if (!cartItemsPending) {
             const totalPrice = cartItems.reduce((accumulator, item) => {
                 return accumulator += item.foodPrice * item.foodQuantity;
@@ -46,7 +43,7 @@ const MyCart = () => {
             setDiscountedAmount(totalPrice.toFixed(2))
             sessionStorage.setItem("final-amount", totalPrice.toFixed(2))
         }
-    }, [cartItemsPending, cartItems, scrollToTop])
+    }, [cartItemsPending, cartItems])
 
 
 

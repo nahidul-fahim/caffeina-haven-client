@@ -17,7 +17,6 @@ const CheckoutForm = ({ clientSecret }) => {
         if (!stripe || !clientSecret) {
             return;
         }
-        console.log(clientSecret)
         stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
             switch (paymentIntent.status) {
                 case "succeeded":
@@ -46,36 +45,31 @@ const CheckoutForm = ({ clientSecret }) => {
         if (!stripe || !elements) {
             return;
         }
-        console.log("handle payment form working")
         setIsLoading(true);
+
+
         const { error } = await stripe.confirmPayment({
             elements,
             confirmParams: {
-                return_url: "http://localhost:5173/checkout",
+                return_url: "http://localhost:5173/checkoutSuccess",
             },
         });
         if (error) {
             setMessage(error.message)
         }
         else {
-            console.log(error)
+            //
         }
         setIsLoading(false)
     }
 
 
 
-
-
-
     return (
-        <form onSubmit={handleSubmit}>
-
-            <PaymentElement />
-            <button disabled={isLoading || !stripe || !elements}>
-                <span>
-                    {isLoading ? "Loading" : "Pay now"}
-                </span>
+        <form onSubmit={handleSubmit} className="payment-form font-body text-white">
+            <PaymentElement className="payment-element font-body text-white" />
+            <button disabled={isLoading || !stripe || !elements} className="pay-button bg-second px-4 py-2 hover:bg-white hover:text-black duration-500">
+                <span>{isLoading ? 'Loading' : 'Pay now'}</span>
             </button>
             {/* Show any error or success messages */}
             {message && <div id="payment-message">{message}</div>}

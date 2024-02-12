@@ -134,3 +134,26 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   height: 20px;
   border-width: thin;
 }
+
+/* payment form style */
+
+.payment-form {
+  color: white;
+  margin: 20px;
+}
+
+.payment-element {
+  color: white;
+  margin-bottom: 10px;
+}
+
+.pay-button:disabled {
+  background-color: #6d6d6d;
+  cursor: not-allowed;
+}
+
+#payment-message {
+  margin-top: 10px;
+  color: #ff0000;
+  font-size: 14px;
+}
