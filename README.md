@@ -2,12 +2,12 @@
 
 ![Website's hero section](./src/assets/caffeina-hero-section.png)
 
-### Server Side Repo - [Server Side Repository](https://github.com/nahidul-fahim/caffeina-haven-server)
-### Live site - [Website's live link](https://caffeina-haven.web.app)
+## Server Side Repo - [Server Side Repository](https://github.com/nahidul-fahim/caffeina-haven-server)
+## Live site - [Website's live link](https://caffeina-haven.web.app)
 
 ## Admin login
-email: admin@admin.com
-password: Asdf$$
+* email: admin@admin.com
+* password: Asdf$$
 
 ## Coupons
 * FIRSTCOUPON2024
@@ -112,3 +112,4 @@ A user can see all the menus available, can order food online, apply valid token
 * Can delete any previous coupon
 
 
+# == Thank you for your visit ==
