@@ -51,7 +51,7 @@ const CheckoutForm = ({ clientSecret }) => {
         const { error } = await stripe.confirmPayment({
             elements,
             confirmParams: {
-                return_url: "http://localhost:5173/checkoutSuccess",
+                return_url: "https://caffeina-haven.web.app/checkoutSuccess",
             },
         });
         if (error) {
