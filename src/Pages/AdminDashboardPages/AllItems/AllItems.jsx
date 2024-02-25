@@ -6,7 +6,6 @@ import useSuccessToast from "../../../Hooks/useSuccessToast/useSuccessToast";
 import Swal from "sweetalert2";
 import { flexRender, getCoreRowModel, getPaginationRowModel, useReactTable } from "@tanstack/react-table";
 import LoadingAnimation from "../../../Components/LoadingAnimation/LoadingAnimation";
-import { Link } from "react-router-dom";
 
 
 const AllItems = () => {
@@ -76,11 +75,6 @@ const columns = [
         cell: row => <div className="flex w-full justify-center items-center">
             <p className="capitalize text-center">{row.row.original.addedOn}</p>
         </div>
-    },
-    {
-        accessorKey: "",
-        header: "Update",
-        cell: (row) => <Link to={`/dashboard/updateItem/${row.row.original._id}`}><button className="bg-[#2b81e4] px-2 text-[16px] uppercase hover:bg-third duration-500 py-1">Update</button></Link>
     },
     {
         accessorKey: "",

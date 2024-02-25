@@ -41,7 +41,7 @@ const OurMenus = () => {
 
 
     return (
-        <div className="mx-auto">
+        <div className="mx-auto mb-10">
             {/* page heading section */}
             <div
                 className="h-[400px] md:h-[450px] lg:h-[500px] flex flex-col justify-center items-center gap-4"

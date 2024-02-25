@@ -84,19 +84,27 @@ const SingleMemory = ({ memory, memoriesRefetch }) => {
 
             {/* post like and remove like button */}
             {
-                likeCheckByUser ?
-                    <button onClick={() => handlePostLike(_id, 'removeLike')}
+                user ?
+                    <>
+                        {
+                            likeCheckByUser ?
+                                <button onClick={() => handlePostLike(_id, 'removeLike')}
+                                    className="text-2xl font-body absolute bottom-[-18px] left-5 flex justify-center items-center gap-2">
+                                    <FcLike /> <span className="text-[16px] text-white">{likeCount || 0}</span>
+                                </button>
+                                :
+                                <button onClick={() => handlePostLike(_id, 'like')}
+                                    className="text-2xl font-body absolute bottom-[-18px] left-5 flex justify-center items-center gap-2">
+                                    <FcLikePlaceholder /> <span className="text-[16px] text-white">{likeCount || 0}</span>
+                                </button>
+                        }
+                    </>
+                    :
+                    <p
                         className="text-2xl font-body absolute bottom-[-18px] left-5 flex justify-center items-center gap-2">
                         <FcLike /> <span className="text-[16px] text-white">{likeCount || 0}</span>
-                    </button>
-                    :
-                    <button onClick={() => handlePostLike(_id, 'like')}
-                        className="text-2xl font-body absolute bottom-[-18px] left-5 flex justify-center items-center gap-2">
-                        <FcLikePlaceholder /> <span className="text-[16px] text-white">{likeCount || 0}</span>
-                    </button>
+                    </p>
             }
-
-
         </div>
     );
 };

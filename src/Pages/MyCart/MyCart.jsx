@@ -174,89 +174,94 @@ const MyCart = () => {
                     className="text-5xl uppercase md:text-7xl font-heading text-center mt-[100px]">Cart</motion.h1>
             </div>
 
+            {
+                cartItems.length === 0 ?
+                <p className="py-[150px] text-3xl text-center font-body text-lightWhite">No items on cart</p>
+                    :
+                    <>
+                        {/* cart page content section */}
+                        <div className="container mx-auto my-5 md:my-7 lg:my-10 w-full flex flex-col justify-center items-center gap-7 p-5">
 
-            {/* cart page content section */}
-            <div className="container mx-auto my-5 md:my-7 lg:my-10 w-full flex flex-col justify-center items-center gap-7 p-5">
 
-
-                {/* table + coupon */}
-                <div className="w-full bg-third flex flex-col justify-center items-center gap-5 py-7">
-                    {/* table to show all the products on cart */}
-                    <motion.table
-                        variants={fadeAnimation(1.2, 0)}
-                        initial="hidden"
-                        whileInView={"visible"}
-                        className="w-full font-body text-[16px] mt-5">
-                        <thead>
-                            {
-                                table.getHeaderGroups().map((headerGroup, index) =>
-                                    <tr key={index} className="table-row text-second font-semibold">
-                                        {headerGroup.headers.map(header =>
-                                            <th key={header?.id} className="table-description text-sub">
-                                                {
-                                                    flexRender(header.column.columnDef.header, header.getContext())
-                                                }
-                                            </th>)}
-                                    </tr>
-                                )}
-                        </thead>
-
-                        <tbody>
-                            {
-                                table.getRowModel().rows.map((row, index) =>
-                                    <tr key={index} className="table-row">
+                            {/* table + coupon */}
+                            <div className="w-full bg-third flex flex-col justify-center items-center gap-5 py-7">
+                                {/* table to show all the products on cart */}
+                                <motion.table
+                                    variants={fadeAnimation(1.2, 0)}
+                                    initial="hidden"
+                                    whileInView={"visible"}
+                                    className="w-full font-body text-[16px] mt-5">
+                                    <thead>
                                         {
-                                            row.getVisibleCells().map((cell, index) =>
-                                                <td key={index} className="text-center table-description">
-                                                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                                </td>)
+                                            table.getHeaderGroups().map((headerGroup, index) =>
+                                                <tr key={index} className="table-row text-second font-semibold">
+                                                    {headerGroup.headers.map(header =>
+                                                        <th key={header?.id} className="table-description text-sub">
+                                                            {
+                                                                flexRender(header.column.columnDef.header, header.getContext())
+                                                            }
+                                                        </th>)}
+                                                </tr>
+                                            )}
+                                    </thead>
+
+                                    <tbody>
+                                        {
+                                            table.getRowModel().rows.map((row, index) =>
+                                                <tr key={index} className="table-row">
+                                                    {
+                                                        row.getVisibleCells().map((cell, index) =>
+                                                            <td key={index} className="text-center table-description">
+                                                                {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                                            </td>)
+                                                    }
+                                                </tr>)
                                         }
-                                    </tr>)
-                            }
-                        </tbody>
-                    </motion.table>
+                                    </tbody>
+                                </motion.table>
 
-                    {/* coupon apply functionality functionality */}
-                    <div className="w-full flex justify-end items-center">
-                        <form onSubmit={handleApplyCoupon} ref={couponInput}
-                            className="w-full md:w-fit flex flex-col md:flex-row justify-end items-center gap-4 px-5 md:px-0">
-                            {/* coupon code */}
-                            <input type="text" name="couponCode" placeholder="Coupon code" id="couponCode" className="focus:outline-none bg-black px-3 md:px-5 py-2 md:py-3 self-stretch font-body" />
-                            {/* submit button */}
-                            <input type="submit" value="Apply Coupon" className="bg-second px-3 md:px-5 py-2 md:py-3 font-heading uppercase cursor-pointer hover:bg-white hover:text-black duration-500 self-stretch" />
-                        </form>
-                    </div>
-                </div>
+                                {/* coupon apply functionality functionality */}
+                                <div className="w-full flex justify-end items-center">
+                                    <form onSubmit={handleApplyCoupon} ref={couponInput}
+                                        className="w-full md:w-fit flex flex-col md:flex-row justify-end items-center gap-4 px-5 md:px-0">
+                                        {/* coupon code */}
+                                        <input type="text" name="couponCode" placeholder="Coupon code" id="couponCode" className="focus:outline-none bg-black px-3 md:px-5 py-2 md:py-3 self-stretch font-body" />
+                                        {/* submit button */}
+                                        <input type="submit" value="Apply Coupon" className="bg-second px-3 md:px-5 py-2 md:py-3 font-heading uppercase cursor-pointer hover:bg-white hover:text-black duration-500 self-stretch" />
+                                    </form>
+                                </div>
+                            </div>
 
 
-                {/* total count section */}
-                <motion.div
-                    variants={upAnimation(1.2, 0.1)}
-                    initial="hidden"
-                    whileInView={"visible"}
-                    className="w-full bg-third px-5 py-10 mt-5 flex flex-col justify-start items-center gap-4">
-                    <h3 className="text-3xl font-heading uppercase text-white">Cart Total</h3>
+                            {/* total count section */}
+                            <motion.div
+                                variants={upAnimation(1.2, 0.1)}
+                                initial="hidden"
+                                whileInView={"visible"}
+                                className="w-full bg-third px-5 py-10 mt-5 flex flex-col justify-start items-center gap-4">
+                                <h3 className="text-3xl font-heading uppercase text-white">Cart Total</h3>
 
-                    {/* subtotal and total */}
-                    <div className="w-full font-body flex flex-col md:flex-row justify-center items-center gap-5 mt-5">
-                        {/* subtotal */}
-                        <div className="w-full md:w-1/2 flex justify-between items-center border-[1px] border-lightBlack border-dotted p-3 self-stretch">
-                            <p>Subtotal</p>
-                            <p>${totalAmount}</p>
+                                {/* subtotal and total */}
+                                <div className="w-full font-body flex flex-col md:flex-row justify-center items-center gap-5 mt-5">
+                                    {/* subtotal */}
+                                    <div className="w-full md:w-1/2 flex justify-between items-center border-[1px] border-lightBlack border-dotted p-3 self-stretch">
+                                        <p>Subtotal</p>
+                                        <p>${totalAmount}</p>
+                                    </div>
+                                    {/* total */}
+                                    <div className="w-full md:w-1/2 flex justify-between items-center border-[1px] border-lightBlack border-dotted p-3 self-stretch">
+                                        <p className="text-2xl">Total <span className="text-[18px] text-[#ff3b3b]">{discount ? `(${discount}% Discount)` : ""}</span></p>
+                                        <p className="text-2xl">${discountedAmount}</p>
+                                    </div>
+                                </div>
+
+                                {/* checkout button */}
+                                <Link to={"/checkout"} state={{ 'totalAmount': totalAmount, 'discountedAmount': discountedAmount }} className="w-full bg-second py-3 text-xl md:py-4 font-heading uppercase text-center mt-3 hover:bg-white hover:text-black duration-500 font-medium">Proceed to checkout</Link>
+                            </motion.div>
+
                         </div>
-                        {/* total */}
-                        <div className="w-full md:w-1/2 flex justify-between items-center border-[1px] border-lightBlack border-dotted p-3 self-stretch">
-                            <p className="text-2xl">Total <span className="text-[18px] text-[#ff3b3b]">{discount ? `(${discount}% Discount)` : ""}</span></p>
-                            <p className="text-2xl">${discountedAmount}</p>
-                        </div>
-                    </div>
-
-                    {/* checkout button */}
-                    <Link to={"/checkout"} state={{ 'totalAmount': totalAmount, 'discountedAmount': discountedAmount }} className="w-full bg-second py-3 text-xl md:py-4 font-heading uppercase text-center mt-3 hover:bg-white hover:text-black duration-500 font-medium">Proceed to checkout</Link>
-                </motion.div>
-
-            </div>
-
+                    </>
+            }
         </div>
     );
 };
