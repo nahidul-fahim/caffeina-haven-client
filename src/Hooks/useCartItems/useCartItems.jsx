@@ -12,10 +12,10 @@ const useCartItems = () => {
 
 
     const { isPending: cartItemsPending, data: cartItems, refetch: cartItemsRefetch } = useQuery({
-        queryKey: ["cart-items", user?.userEmail],
+        queryKey: ["cart-items", user?.email],
         enabled: !userPending,
         queryFn: async () => {
-            const res = await axiosSecure.get(`/getAllCartItemsApi/${user?.userEmail}`);
+            const res = await axiosSecure.get(`/getAllCartItemsApi/${user?.email}`);
             return res.data;
         }
     })

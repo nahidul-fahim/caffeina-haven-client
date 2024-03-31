@@ -92,7 +92,7 @@ const StoryHub = () => {
         const postTime = currentTime;
         const userId = user?._id;
         const userName = user?.userName;
-        const userEmail = user?.userEmail;
+        const userEmail = user?.email;
         const userType = user?.userType;
         const userImage = user?.photo;
         const pinnedStatus = "unpin";

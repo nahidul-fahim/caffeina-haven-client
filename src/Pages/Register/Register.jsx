@@ -79,14 +79,14 @@ const Register = () => {
 
                         // get the data from form
                         const userName = e.target.userName.value;
-                        const userEmail = e.target.userEmail.value;
+                        const email = e.target.userEmail.value;
                         const password = e.target.password.value;
                         const photo = res.data.data.display_url;
                         const userCreationDate = todayDate;
                         const userType = "user";
 
                         // insert the form data into an object
-                        const newUserInfo = { userName, userEmail, photo, userCreationDate, userType }
+                        const newUserInfo = { userName, email, photo, userCreationDate, userType }
 
 
                         // regular expression for password
@@ -100,7 +100,7 @@ const Register = () => {
                         }
 
                         // create new user function
-                        createNewUser(userEmail, password)
+                        createNewUser(email, password)
                             .then(result => {
                                 // if new user is created send the data to database
                                 if (result.user) {

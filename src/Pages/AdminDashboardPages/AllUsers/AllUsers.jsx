@@ -62,7 +62,7 @@ const AllUsers = () => {
             cell: row => <p className="text-center text-[16px]">{row.row.original._id}</p>
         },
         {
-            accessorKey: "userEmail",
+            accessorKey: "email",
             header: "Email"
         },
         {

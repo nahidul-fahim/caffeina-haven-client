@@ -48,7 +48,6 @@ const AuthProvider = ({ children }) => {
     }
 
 
-
     //Google sign up function
     const createNewUserByGoogle = () => {
         setAuthLoading(true);

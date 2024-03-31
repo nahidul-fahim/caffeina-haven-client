@@ -56,14 +56,12 @@ const SignIn = () => {
     }
 
 
-    //sign in using Google 
+    //sign in using Google
     const handleGoogleSignIn = () => {
         createNewUserByGoogle()
             .then(result => {
                 if (result) {
-
                     const data = result?.user;
-
                     // get the user info from google login
                     const name = data?.displayName;
                     const email = data?.email;

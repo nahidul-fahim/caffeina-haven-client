@@ -68,7 +68,7 @@ const AddNewItem = () => {
                         const foodOrigin = form.foodOrigin.value;
                         const itemDescription = form.itemDescription.value;
                         const addedBy = user?.userName;
-                        const adderEmail = user?.userEmail;
+                        const adderEmail = user?.email;
                         const adderImage = user?.photo;
                         const addedOn = todayDate;
                         const itemImage = res.data.data.display_url;

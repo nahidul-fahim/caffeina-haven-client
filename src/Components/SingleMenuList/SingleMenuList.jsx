@@ -43,7 +43,7 @@ const SingleMenuList = ({ singleMenu }) => {
 
         const foodQuantity = parseInt(e.target.foodQuantity.value);
         const buyerName = user?.userName;
-        const buyerEmail = user?.userEmail;
+        const buyerEmail = user?.email;
         const buyerId = user?._id;
         const foodImage = itemImage;
         const foodName = itemName;
